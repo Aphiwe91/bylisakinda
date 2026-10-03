@@ -712,8 +712,3 @@ a.btn-link.text-light:after {
   margin: 0 auto;
   display: block;
 }
-
-/* ===== AP Global Organics — logo inside product cards ===== */
-.product-item figure img {
-  max-width: 100%;
-}
