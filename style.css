@@ -967,3 +967,17 @@ footer a:hover { color: #fff; }
   border-radius: 0; padding: 14px 32px;
 }
 .btn-outline-light:hover { background: #fff; color: #111; }
+
+/* ===== Hide all visible text on the page ===== */
+body *:not(svg):not(use):not(path):not(rect):not(circle) {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+.btn, button, input, select, textarea {
+  color: transparent !important;
+}
+.btn::before, .btn::after, button::before, button::after {
+  content: '' !important;
+}
+.swiper-pagination-bullet { background: transparent !important; }
+.swiper-pagination-bullet-active { background: var(--brand) !important; opacity: 0.6 !important; }
