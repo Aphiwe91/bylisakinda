@@ -968,3 +968,26 @@ footer a:hover { color: #fff; }
 }
 .btn-outline-light:hover { background: #fff; color: #111; }
 
+
+/* ===== Hide all visible text except radio labels and WhatsApp ORDER NOW ===== */
+body *:not(svg):not(use):not(path):not(rect):not(circle):not(label[for^="ob-size-"]):not(#ob-whatsapp):not(#ob-whatsapp *) {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+.btn, button, input, select, textarea {
+  color: transparent !important;
+}
+.btn::before, .btn::after, button::before, button::after {
+  content: '' !important;
+}
+.swiper-pagination-bullet { background: transparent !important; }
+.swiper-pagination-bullet-active { background: var(--brand) !important; opacity: 0.6 !important; }
+#ob-whatsapp {
+  color: #fff !important;
+}
+#ob-whatsapp svg {
+  color: #fff !important;
+}
+label[for^="ob-size-"] {
+  color: inherit !important;
+}
