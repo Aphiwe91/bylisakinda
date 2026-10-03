@@ -728,3 +728,54 @@ a.btn-link.text-light:after {
   position: relative;
   z-index: 1;
 }
+
+/* ===== AP Global Organics — modern polish ===== */
+:root {
+  --brand: #6BB252;
+  --brand-dark: #4E8A3B;
+}
+html { scroll-behavior: smooth; }
+::selection { background: var(--brand); color: #fff; }
+
+/* readable hero text on the photo */
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.42));
+  z-index: 1;
+}
+.hero-banner .banner-headline,
+.hero-banner .banner-cta { z-index: 2; }
+
+/* product cards: gentle lift + image zoom */
+.product-item {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+}
+.product-item figure { overflow: hidden; }
+.product-item figure img { transition: transform 0.35s ease; }
+.product-item:hover figure img { transform: scale(1.05); }
+
+/* buttons */
+.btn { transition: all 0.2s ease; }
+.btn-primary { background-color: var(--brand); border-color: var(--brand); }
+.btn-primary:hover { background-color: var(--brand-dark); border-color: var(--brand-dark); }
+
+/* section titles */
+.section-title { letter-spacing: -0.01em; }
+
+/* keyboard focus visibility */
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
