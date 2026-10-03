@@ -712,3 +712,8 @@ a.btn-link.text-light:after {
   margin: 0 auto;
   display: block;
 }
+
+/* ===== AP Global Organics — navy hero text ===== */
+.text-navy {
+  color: #0A1F44;
+}
