@@ -392,6 +392,20 @@
     showToast("Opening WhatsApp with your order…");
   });
 
+  // ---------- hero carousel ----------
+  if (document.querySelector(".hero-carousel")) {
+    new Swiper(".hero-carousel", {
+      loop: true,
+      speed: 700,
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      pagination: { el: ".hero-carousel .swiper-pagination", clickable: true },
+      navigation: {
+        nextEl: ".hero-carousel .swiper-button-next",
+        prevEl: ".hero-carousel .swiper-button-prev",
+      },
+    });
+  }
+
   // ---------- init ----------
   renderCart();
   obRecalc();

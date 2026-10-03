@@ -830,3 +830,43 @@ html { scroll-behavior: smooth; }
 .product-item:hover .button-area {
   display: block;
 }
+
+/* landing hero carousel */
+.hero-banner {
+  display: block;
+  background: #1e1e1e;
+  aspect-ratio: auto;
+  padding: 0;
+}
+.hero-carousel { width: 100%; }
+.hero-slide {
+  position: relative;
+  min-height: 560px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
+}
+.hero-slide-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 2rem 1.5rem;
+  max-width: 780px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+.hero-slide-content .lead { color: rgba(255, 255, 255, 0.9); }
+.hero-carousel .swiper-pagination-bullet { background: #ffffff; opacity: 0.7; }
+.hero-carousel .swiper-pagination-bullet-active { background: var(--brand); opacity: 1; }
+.hero-carousel .swiper-button-next,
+.hero-carousel .swiper-button-prev { color: #ffffff; }
+@media (max-width: 768px) {
+  .hero-slide { min-height: 460px; }
+  .hero-slide-content h1 { font-size: 2rem; }
+}

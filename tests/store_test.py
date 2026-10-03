@@ -145,6 +145,17 @@ btn_visible = driver.execute_script("""
 """)
 check("add-to-cart button always visible", btn_visible)
 
+# 10b. hero carousel initialised (autoplay + pagination)
+hero = driver.execute_script("""
+  var s = document.querySelector('.hero-carousel');
+  return s.swiper ? {slides: s.querySelectorAll('.swiper-slide').length,
+                     autoplay: !!(s.swiper.autoplay && s.swiper.autoplay.running),
+                     bullets: document.querySelectorAll('.hero-carousel .swiper-pagination-bullet').length}
+                  : null;
+""")
+check("hero carousel live (3 slides, autoplay, 3 bullets)",
+      hero and hero["slides"] == 3 and hero["autoplay"] and hero["bullets"] == 3, hero)
+
 # 11. console errors (exclude the known Google Fonts network warning)
 browser_errors = [l["message"] for l in driver.get_log("browser")
                   if l["level"] in ("SEVERE", "ERROR") and "fonts.googleapis" not in l["message"]]
