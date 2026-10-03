@@ -779,3 +779,54 @@ html { scroll-behavior: smooth; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==== AP Global Organics — store front-end additions ==== */
+
+.bg-brand { background-color: var(--brand) !important; }
+
+/* scenario cards */
+.scenario-card { transition: transform .18s ease, box-shadow .18s ease; }
+.scenario-card:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.10); }
+.scenario-img { height: 180px; object-fit: cover; }
+
+/* quick-view affordance */
+.product-item figure a,
+.product-item h3 { cursor: pointer; }
+.product-item figure img { transition: transform .25s ease; }
+.product-item figure a:hover img { transform: scale(1.04); }
+
+/* order builder */
+#ob-progress { transition: width .25s ease; }
+
+/* toast */
+#ago-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%) translateY(20px);
+  background: #212529;
+  color: #fff;
+  padding: .6rem 1.1rem;
+  border-radius: .5rem;
+  font-size: .9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 2000;
+  max-width: 90vw;
+}
+#ago-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* quick-view modal image */
+#product-modal img { max-height: 420px; object-fit: contain; }
+
+/* product cards: always show the add-to-cart controls
+   (hover-only reveal is unusable on touch devices) */
+.product-item .button-area {
+  display: block;
+  position: static;
+  box-shadow: none;
+}
+.product-item:hover .button-area {
+  display: block;
+}

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>AP Global Organics | Premium Organic Spices, Herbs & Adaptogens</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236BB252'/%3E%3Cpath d='M16 4C9.5 10.5 8.5 16.5 16 28c7.5-11.5 6.5-17.5 0-24z' fill='white'/%3E%3Cpath d='M16 8v16' stroke='%236BB252' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,41 +93,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div class="order-md-last">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary">Your cart</span>
-            <span class="badge bg-primary rounded-pill">3</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Ashwagandha Powder (Indian Ginseng)</h6>
-                <small class="text-body-secondary">80g portion</small>
-              </div>
-              <span class="text-body-secondary">R27.83</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Moringa Powder</h6>
-                <small class="text-body-secondary">80g portion</small>
-              </div>
-              <span class="text-body-secondary">R21.49</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Turmeric Powder</h6>
-                <small class="text-body-secondary">80g portion</small>
-              </div>
-              <span class="text-body-secondary">R11.61</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (ZAR)</span>
-              <strong>R60.93</strong>
-            </li>
-          </ul>
-  
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-        </div>
+        
       </div>
     </div>
     
@@ -272,19 +239,18 @@
           <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-4">
             <div class="search-bar row bg-light p-2 rounded-4">
               <div class="col-md-4 d-none d-md-block">
-                <select class="form-select border-0 bg-transparent">
-                  <option>All Categories</option>
-                  <option>Spices</option>
+                <select id="category-filter" class="form-select border-0 bg-transparent">
+                  <option value="">All Categories</option>
+                  <option>Adaptogens &amp; Wellness</option>
+                  <option>Spices &amp; Blends</option>
                   <option>Herbs</option>
-                  <option>Adaptogens</option>
-                  <option>Superfoods</option>
-                  <option>Teas & Blends</option>
-                  <option>Bulk & Staples</option>
+                  <option>Baking &amp; Pantry</option>
+                  <option>Bulk &amp; Staples</option>
                 </select>
               </div>
               <div class="col-11 col-md-7">
                 <form id="search-form" class="text-center" action="index.html" method="post">
-                  <input type="text" class="form-control border-0 bg-transparent" placeholder="Search turmeric, ashwagandha, garam masala…">
+                  <input type="text" id="search-input" class="form-control border-0 bg-transparent" placeholder="Search turmeric, ashwagandha, garam masala…">
                 </form>
               </div>
               <div class="col-1">
@@ -486,7 +452,36 @@
       </div>
     </section>
 
-    <section class="pb-5">
+        <section class="py-5" id="cart">
+      <div class="container-lg">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="card border-0 shadow-sm p-4">
+
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Your cart</span>
+            <span class="badge bg-primary rounded-pill" id="cart-count">0</span>
+          </h4>
+          <ul class="list-group mb-3" id="cart-items">
+            <li class="list-group-item d-flex justify-content-between lh-sm" id="cart-empty">
+              <div>
+                <h6 class="my-0">Your cart is empty</h6>
+                <small class="text-body-secondary">Add products from the shelves below</small>
+              </div>
+            </li>
+          </ul>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span>Total (ZAR)</span>
+            <strong id="cart-total">R0.00</strong>
+          </div>
+          <small class="text-body-secondary d-block mb-2" id="cart-delivery-note"></small>
+          <button class="w-100 btn btn-primary btn-lg" type="button" id="cart-checkout">Checkout via WhatsApp</button>
+                      </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="pb-5">
       <div class="container-lg">
 
         <div class="row">
@@ -2108,6 +2103,165 @@
       </div>
     </section>
 
+    <section class="py-5" id="scenarios">
+      <div class="container-lg">
+        <div class="row align-items-end mb-4">
+          <div class="col-lg-8">
+            <h2 class="section-title">Real life with AP Global Organics</h2>
+            <p class="lead text-secondary">Five everyday South African scenarios — from the 6 a.m. ritual to the Saturday braai — and exactly which products cover them.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+            <button class="btn btn-outline-dark rounded-pill" id="scenario-reset" type="button">Show everything</button>
+          </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-5 g-4" id="scenario-grid">
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm scenario-card">
+              <img src="images/product-photo-1.jpg" class="card-img-top scenario-img" alt="Ashwagandha and moringa for the morning ritual">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-brand text-white align-self-start mb-2">Wellness</span>
+                <h5 class="card-title">The 6 a.m. ritual</h5>
+                <p class="card-text small">Half a teaspoon of ashwagandha in your first coffee, moringa in your smoothie. Steady energy, no crash — the daily reset for busy mornings.</p>
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  <span class="badge border border-dark-subtle rounded-0">Ashwagandha</span>
+                  <span class="badge border border-dark-subtle rounded-0">Moringa</span>
+                </div>
+                <small class="text-body-secondary mb-2">Or grab the Daily Wellness Ritual Kit — both + shaker pouch, R129.</small>
+                <button class="btn btn-sm btn-outline-dark w-100 mt-auto scenario-shop" type="button" data-products="Ashwagandha Powder (Indian Ginseng)|Moringa Powder">Shop this scenario</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm scenario-card">
+              <img src="images/product-photo-3.jpg" class="card-img-top scenario-img" alt="Turmeric golden milk for recovery">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-brand text-white align-self-start mb-2">Fitness</span>
+                <h5 class="card-title">Post-training recovery</h5>
+                <p class="card-text small">Golden milk after a long run: turmeric and fine ginger in hot milk, with cracked black pepper to unlock the curcumin. Nature's original recovery shake.</p>
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  <span class="badge border border-dark-subtle rounded-0">Turmeric</span>
+                  <span class="badge border border-dark-subtle rounded-0">Fine Black Pepper</span>
+                  <span class="badge border border-dark-subtle rounded-0">Fine Ginger</span>
+                </div>
+                <button class="btn btn-sm btn-outline-dark w-100 mt-auto scenario-shop" type="button" data-products="Turmeric Powder|Fine Black Pepper|Fine Ginger">Shop this scenario</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm scenario-card">
+              <img src="images/product-photo-16.jpg" class="card-img-top scenario-img" alt="Braai spice rub for the weekend braai">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-brand text-white align-self-start mb-2">Braai</span>
+                <h5 class="card-title">Saturday braai, sorted</h5>
+                <p class="card-text small">Rub the chicken at eleven, baste with peri-peri, finish with smoked paprika. One box covers a whole braai — rub, finishing spice and the wooden spoon included.</p>
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  <span class="badge border border-dark-subtle rounded-0">Barbeque Spice</span>
+                  <span class="badge border border-dark-subtle rounded-0">Biltong Spice</span>
+                  <span class="badge border border-dark-subtle rounded-0">Smoked Paprika</span>
+                  <span class="badge border border-dark-subtle rounded-0">Peri-Peri</span>
+                </div>
+                <small class="text-body-secondary mb-2">Braai Master Trio — 4×80g pouches + wooden spoon, R199.</small>
+                <button class="btn btn-sm btn-outline-dark w-100 mt-auto scenario-shop" type="button" data-products="Barbeque Spice|Biltong Spice|Smoked Paprika|Peri-Peri Spice">Shop this scenario</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm scenario-card">
+              <img src="images/product-photo-30.jpg" class="card-img-top scenario-img" alt="Cassava flour for grain-free baking">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-brand text-white align-self-start mb-2">Baking</span>
+                <h5 class="card-title">Grain-free baking day</h5>
+                <p class="card-text small">Cassava flour swaps 1:1 for wheat in scones and pancakes. Add chickpeas to the potjie and a pinch of pink salt — clean eating without the compromise.</p>
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  <span class="badge border border-dark-subtle rounded-0">Cassava Flour</span>
+                  <span class="badge border border-dark-subtle rounded-0">Chickpeas</span>
+                  <span class="badge border border-dark-subtle rounded-0">Pink Salt</span>
+                </div>
+                <button class="btn btn-sm btn-outline-dark w-100 mt-auto scenario-shop" type="button" data-products="Cassava Flour|Chickpeas / Whole Chana|Coarse Himalayan Pink Salt">Shop this scenario</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm scenario-card">
+              <img src="images/product-photo-6.jpg" class="card-img-top scenario-img" alt="Bulk black pepper for café supply">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-brand text-white align-self-start mb-2">Wholesale</span>
+                <h5 class="card-title">Supplying your café</h5>
+                <p class="card-text small">Running a juice bar, deli or bakery? Every product is available in 1 kg and 5 kg bulk at 35–40% off retail RRP — or co-branded 80g pouches for your shelf.</p>
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  <span class="badge border border-dark-subtle rounded-0">1 kg &amp; 5 kg bulk</span>
+                  <span class="badge border border-dark-subtle rounded-0">35–40% off</span>
+                  <span class="badge border border-dark-subtle rounded-0">Co-branded pouches</span>
+                </div>
+                <button class="btn btn-sm btn-outline-dark w-100 mt-auto" id="wholesale-enquiry" type="button">Enquire about wholesale</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-5 bg-light" id="order-builder">
+      <div class="container-lg">
+        <h2 class="section-title">Build your order</h2>
+        <p class="lead text-secondary">Live prices straight from the 80g costing sheet — pick a product, choose your pouch size, and send the order straight to our WhatsApp.</p>
+        <div class="row g-4 mt-2">
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <label for="ob-product" class="form-label fw-semibold">Product</label>
+                <select id="ob-product" class="form-select form-select-lg mb-4"></select>
+                <label class="form-label fw-semibold">Pouch size</label>
+                <div class="btn-group mb-4" role="group" id="ob-sizes">
+                  <input type="radio" class="btn-check" name="ob-size" id="ob-size-80" value="80" checked>
+                  <label class="btn btn-outline-dark" for="ob-size-80">80g</label>
+                  <input type="radio" class="btn-check" name="ob-size" id="ob-size-200" value="200">
+                  <label class="btn btn-outline-dark" for="ob-size-200">200g</label>
+                  <input type="radio" class="btn-check" name="ob-size" id="ob-size-500" value="500">
+                  <label class="btn btn-outline-dark" for="ob-size-500">500g</label>
+                </div>
+                <label for="ob-qty" class="form-label fw-semibold">Quantity</label>
+                <div class="input-group mb-4" style="max-width: 240px;">
+                  <button class="btn btn-outline-dark" type="button" id="ob-minus">−</button>
+                  <input id="ob-qty" type="number" class="form-control text-center" value="1" min="1" max="99">
+                  <button class="btn btn-outline-dark" type="button" id="ob-plus">+</button>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="ob-subscribe">
+                  <label class="form-check-label" for="ob-subscribe"><strong>Subscribe &amp; Save 12%</strong> <span class="text-body-secondary">— automatic monthly or bi-monthly delivery, skip or cancel anytime</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body p-4">
+                <h5 class="card-title mb-3">Order summary</h5>
+                <div id="ob-lines" class="mb-3"></div>
+                <hr class="my-3">
+                <div class="progress mb-2" style="height: 8px;">
+                  <div id="ob-progress" class="progress-bar bg-brand" style="width: 0%"></div>
+                </div>
+                <small class="text-body-secondary d-block mb-3" id="ob-delivery-msg"></small>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="text-body-secondary">Subtotal</span>
+                  <span id="ob-subtotal">R0.00</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-1" id="ob-save-row" style="display:none;">
+                  <span class="text-body-secondary">Subscribe &amp; Save (12%)</span>
+                  <span class="text-success" id="ob-save">−R0.00</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Total (ZAR)</strong>
+                  <strong id="ob-total" class="fs-4">R0.00</strong>
+                </div>
+                <a href="#" class="btn btn-success w-100 mt-3" id="ob-whatsapp">Send order via WhatsApp</a>
+                <button class="btn btn-outline-dark w-100 mt-2" id="ob-copy" type="button">Copy order summary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer class="py-5">
       <div class="container-lg">
         <div class="row">
@@ -2248,10 +2402,42 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="product-modal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0">
+          <div class="modal-body p-0">
+            <div class="row g-0">
+              <div class="col-md-5 d-flex align-items-center justify-content-center bg-light p-4">
+                <img id="pm-img" src="" alt="" class="img-fluid rounded">
+              </div>
+              <div class="col-md-7">
+                <div class="p-4">
+                  <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <h4 id="pm-name" class="mb-1"></h4>
+                  <p id="pm-use" class="text-secondary small"></p>
+                  <table class="table table-borderless table-sm mb-3">
+                    <tbody>
+                      <tr><td class="text-body-secondary">Pack size</td><td class="text-end" id="pm-pack"></td></tr>
+                      <tr><td class="text-body-secondary">Cost per gram</td><td class="text-end" id="pm-cost"></td></tr>
+                      <tr><td class="text-body-secondary">80g pouch</td><td class="text-end fw-semibold" id="pm-p80"></td></tr>
+                      <tr><td class="text-body-secondary">200g pouch</td><td class="text-end fw-semibold" id="pm-p200"></td></tr>
+                      <tr><td class="text-body-secondary">500g pouch</td><td class="text-end fw-semibold" id="pm-p500"></td></tr>
+                    </tbody>
+                  </table>
+                  <button class="btn btn-primary w-100" id="pm-add" type="button">Add 80g pouch to cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" integrity="sha384-2UI1PfnXFjVMQ7/ZDEF70CR943oH3v6uZrFQGGqJYlvhh4g6z6uVktxYbOlAczav" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/store.js"></script>
   </body>
 </html>
