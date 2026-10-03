@@ -712,3 +712,19 @@ a.btn-link.text-light:after {
   margin: 0 auto;
   display: block;
 }
+
+/* ===== AP Global Organics — newsletter banner overlay ===== */
+#newsletter .bg-secondary {
+  position: relative;
+}
+#newsletter .bg-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+#newsletter .bg-secondary > .container {
+  position: relative;
+  z-index: 1;
+}
