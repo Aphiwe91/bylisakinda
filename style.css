@@ -831,17 +831,21 @@ html { scroll-behavior: smooth; }
   display: block;
 }
 
-/* landing hero carousel */
-.hero-banner {
-  display: block;
-  background: #1e1e1e;
-  aspect-ratio: auto;
-  padding: 0;
+/* ===== AP Global Organics — devoir-inspired bold style ===== */
+:root {
+  --brand: #6BB252;
+  --brand-dark: #4E8A3B;
+  --ink: #1a1a1a;
+  --paper: #faf9f6;
 }
+body { background: var(--paper); color: #333; }
+
+/* ===== Hero: bold statement, creative overlay ===== */
+.hero-banner { display: block; background: #111; padding: 0; overflow: hidden; }
 .hero-carousel { width: 100%; }
 .hero-slide {
   position: relative;
-  min-height: 560px;
+  min-height: 92vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -849,24 +853,99 @@ html { scroll-behavior: smooth; }
   justify-content: center;
 }
 .hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(20,20,20,0.75) 0%, rgba(20,20,20,0.35) 100%);
 }
 .hero-slide-content {
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
   color: #fff;
-  padding: 2rem 1.5rem;
-  max-width: 780px;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+  padding: 3rem 2rem;
+  max-width: 900px;
+  text-align: center;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.6);
 }
-.hero-slide-content .lead { color: rgba(255, 255, 255, 0.9); }
-.hero-carousel .swiper-pagination-bullet { background: #ffffff; opacity: 0.7; }
-.hero-carousel .swiper-pagination-bullet-active { background: var(--brand); opacity: 1; }
+.hero-slide-content h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+.hero-slide-content .lead {
+  color: rgba(255,255,255,0.85);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+.hero-carousel .swiper-pagination-bullet { background: #fff; opacity: 0.4; width: 14px; height: 4px; border-radius: 2px; }
+.hero-carousel .swiper-pagination-bullet-active { background: var(--brand); opacity: 1; width: 28px; }
 .hero-carousel .swiper-button-next,
-.hero-carousel .swiper-button-prev { color: #ffffff; }
-@media (max-width: 768px) {
-  .hero-slide { min-height: 460px; }
-  .hero-slide-content h1 { font-size: 2rem; }
+.hero-carousel .swiper-button-prev { color: #fff; --swiper-navigation-size: 24px; }
+@media (max-width: 991px) { .hero-slide { min-height: 75vh; } }
+@media (max-width: 768px) { .hero-slide { min-height: 65vh; } }
+
+/* ===== Navbar: minimal, crisp ===== */
+header .row { border-bottom: 1px solid rgba(0,0,0,0.06); }
+header a { transition: opacity .2s; }
+header a:hover { opacity: 0.7; }
+
+/* ===== Category circles: playful float ===== */
+.category-carousel .swiper-slide { transition: transform .3s ease; }
+.category-carousel .swiper-slide:hover { transform: translateY(-6px); }
+.category-carousel img.rounded-circle {
+  width: 140px; height: 140px; object-fit: cover;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transition: transform .35s ease, box-shadow .35s ease;
 }
+.category-carousel img.rounded-circle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 16px 40px rgba(107,178,82,0.25);
+}
+
+/* ===== Banner blocks: creative staggered overlap ===== */
+.banner-ad { border-radius: 20px; overflow: hidden; transition: transform .35s ease; position: relative; }
+.banner-ad:hover { transform: translateY(-4px); }
+.banner-ad .banner-content { position: relative; z-index: 2; }
+.banner-ad::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+  z-index: 1;
+}
+
+/* ===== Product cards: editorial cards ===== */
+.product-item {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.product-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+.product-item figure img {
+  max-height: 220px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: transform .4s ease;
+}
+.product-item:hover figure img { transform: scale(1.05); }
+
+/* ===== Section titles: bold statement ===== */
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* ===== Footer: clean dark ===== */
+footer { background: #111 !important; color: #ccc; }
+footer h5, footer h6 { color: #fff; }
+footer a { color: #999; transition: color .2s; }
+footer a:hover { color: #fff; }
