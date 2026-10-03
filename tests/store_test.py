@@ -153,8 +153,8 @@ hero = driver.execute_script("""
                      bullets: document.querySelectorAll('.hero-carousel .swiper-pagination-bullet').length}
                   : null;
 """)
-check("hero carousel live (3 slides, autoplay, 3 bullets)",
-      hero and hero["slides"] == 3 and hero["autoplay"] and hero["bullets"] == 3, hero)
+check("hero carousel live (4 slides, autoplay, 4 bullets)",
+      hero and hero["slides"] == 4 and hero["autoplay"] and hero["bullets"] == 4, hero)
 
 # 11. console errors (exclude the known Google Fonts network warning)
 browser_errors = [l["message"] for l in driver.get_log("browser")
