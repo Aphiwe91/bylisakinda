@@ -894,6 +894,20 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   .nav-reg-numbers { font-size: 0.85rem; }
 }
 
+/* social handles on the navbar */
+.nav-social a {
+  color: #fff;
+  display: inline-flex;
+  opacity: 0.95;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.nav-social a:hover,
+.nav-social a:focus-visible {
+  color: #fff;
+  opacity: 1;
+  transform: translateY(-2px) scale(1.08);
+}
+
 /* ===== Hero: devoir-style minimal, text-centric ===== */
 .hero-banner { display: block; background: #111; padding: 0; overflow: hidden; }
 .hero-carousel { width: 100%; }
