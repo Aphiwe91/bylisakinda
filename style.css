@@ -594,7 +594,7 @@ a.btn-link.text-light:after {
 /** HERO BANNER
 --------------------------------------------------------------*/
 .hero-banner {
-  background-image: url('images/banner-1.jpg');
+  background-image: url('images/banner-1.jpg?v=2');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
