@@ -1138,17 +1138,18 @@ footer a:hover { color: #fff; }
   animation: card-orbit 14s linear infinite;
   will-change: transform;
 }
-/* the card travels a wide ellipse around the hero, constant speed */
+/* the card sweeps a wide ellipse around the hero — the vertical travel is kept
+   shallow (was +/-11vh) so the card never dips under the sticky ORDER NOW pill */
 @keyframes card-orbit {
-  0%    { transform: translate(0, -11vh); }
-  12%   { transform: translate(14vw, -7.8vh); }
+  0%    { transform: translate(0, -2vh); }
+  12%   { transform: translate(14vw, -1.5vh); }
   25%   { transform: translate(20vw, 0); }
-  37%   { transform: translate(14vw, 7.8vh); }
-  50%   { transform: translate(0, 11vh); }
-  62%   { transform: translate(-14vw, 7.8vh); }
+  37%   { transform: translate(14vw, 1.5vh); }
+  50%   { transform: translate(0, 2vh); }
+  62%   { transform: translate(-14vw, 1.5vh); }
   75%   { transform: translate(-20vw, 0); }
-  87%   { transform: translate(-14vw, -7.8vh); }
-  100%  { transform: translate(0, -11vh); }
+  87%   { transform: translate(-14vw, -1.5vh); }
+  100%  { transform: translate(0, -2vh); }
 }
 /* small screens: keep it centered with a gentle bob instead of the orbit */
 @media (max-width: 767.98px) {
@@ -1274,17 +1275,68 @@ h2.section-title,
 }
 
 /* ===== Trusted payment gateways =====
-   Directly below the white rule under the navbar. Scrolls right — the opposite
-   direction to the feature-tiles marquee (translateX -50% -> 0, not 0 -> -50%). */
+   Sits directly below the white rule under the navbar. The bar carries the
+   navbar's red-gold-green gradient as a light wash + a 2px brand hairline, so
+   it bridges the white header and the dark hero instead of floating on white.
+   Scrolls RIGHT — the opposite direction to the feature-tiles marquee
+   (translateX -50% -> 0, not 0 -> -50%). */
 .pay-strip {
-  background: #fff;
-  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
-  padding: 12px 0;
+  position: relative;
+  background-color: #fff;
+  background-image: linear-gradient(90deg,
+    rgba(198, 40, 40, 0.09),
+    rgba(224, 164, 0, 0.12),
+    rgba(46, 125, 50, 0.09));
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  padding: 11px 0;
   overflow: hidden;
+}
+.pay-strip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C62828 0%, #E0A400 50%, #2E7D32 100%);
+  opacity: 0.6;
+}
+/* static trust tag: a solid pill the badges slide out from behind */
+.pay-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 44px;
+  padding: 0 16px 0 13px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(17, 17, 17, 0.07);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(17, 17, 17, 0.06),
+              0 0 0 7px rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.pay-label svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--brand-dark);
 }
 .pay-marquee {
   width: 100%;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 .pay-track {
   display: flex;
@@ -1292,35 +1344,56 @@ h2.section-title,
   width: max-content;
   animation: pay-scroll 45s linear infinite;
 }
+.pay-marquee:hover .pay-track {
+  animation-play-state: paused;
+}
 .pay-track > * {
   flex-shrink: 0;
-  margin-right: 18px;
+  margin-right: 14px;
 }
 .pay-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 46px;
-  min-width: 74px;
-  padding: 0 16px;
-  background: #fff;
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  border-radius: 9px;
-  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.07);
+  height: 44px;
+  min-width: 70px;
+  padding: 0 18px;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(17, 17, 17, 0.07);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(17, 17, 17, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.pay-badge:hover {
+  transform: translateY(-3px);
+  border-color: rgba(107, 178, 82, 0.55);
+  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.14);
 }
 .pay-badge img {
-  height: 26px;
+  height: 24px;
   width: auto;
   display: block;
 }
 .pay-badge img.pay-square {
-  height: 30px;
+  height: 28px;
 }
+/* SA wallets have no free logo — brand-tinted name chips with a brand dot */
 .pay-badge.pay-name {
+  gap: 8px;
   font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
-  color: #333;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.pay-badge.pay-name::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 3px rgba(107, 178, 82, 0.18);
 }
 @keyframes pay-scroll {
   from { transform: translateX(-50%); }
@@ -1328,11 +1401,237 @@ h2.section-title,
 }
 @media (max-width: 575.98px) {
   .pay-strip { padding: 9px 0; }
-  .pay-badge { height: 40px; min-width: 64px; padding: 0 12px; }
-  .pay-badge img { height: 22px; }
-  .pay-badge img.pay-square { height: 26px; }
-  .pay-badge.pay-name { font-size: 0.9rem; }
+  .pay-label {
+    left: 8px;
+    height: 38px;
+    font-size: 0.62rem;
+    letter-spacing: 0.11em;
+    padding: 0 13px 0 10px;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(17, 17, 17, 0.06),
+                0 0 0 5px rgba(255, 255, 255, 0.55);
+  }
+  .pay-label svg { width: 12px; height: 12px; }
+  .pay-badge { height: 38px; min-width: 60px; padding: 0 13px; }
+  .pay-badge img { height: 20px; }
+  .pay-badge img.pay-square { height: 24px; }
+  .pay-badge.pay-name { font-size: 0.85rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pay-track { animation: none; }
+}
+
+/* ===== Images: never wider than their column =====
+   .row > .col* is a flex item with min-width:auto, so an unconstrained photo
+   (blog cards ship at 1100-1200px) inflates the column itself and drags the
+   whole page sideways. No <img> in this site uses width/height attributes,
+   so height:auto is safe everywhere. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== Mobile: nothing may push the page sideways =====
+   Two real offenders at 390px (page scrolled to 476px):
+   1. footer social row = 5 x 84px buttons + gaps = 452px inside a 327px column;
+   2. .banner-blocks is a grid whose single track took block-3's min-content
+      width (371px) and stretched every block past the container. */
+@media (max-width: 767.98px) {
+  .social-links ul {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .social-links a.btn {
+    padding: 14px 18px;            /* 5 x 52px + gaps = 292px, fits 327px */
+  }
+
+  .banner-blocks {
+    gap: 1.25rem;
+  }
+  .banner-ad {
+    min-width: 0;                  /* grid item min-content -> 0, track = 1fr */
+  }
+  .banner-ad .banner-content {
+    padding: 26px 22px;            /* p-5 (48px) ate 30% of a 327px box */
+  }
+  .banner-ad .banner-title {
+    font-size: 1.45rem;
+  }
+  .banner-ad .banner-content .d-flex.gap-3 {
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+  .banner-ad img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .social-links a.btn {
+    padding: 13px 16px;
+  }
+}
+
+/* ===== Touch targets: 44px minimum on small screens ===== */
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-grid;
+    place-items: center;
+  }
+  header .form-control,
+  header .form-select {
+    min-height: 44px;
+  }
+  #offcanvasNavbar .nav-link {
+    min-height: 44px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 44px;
+    height: 44px;
+  }
+  #ob-minus,
+  #ob-plus,
+  #ob-qty {
+    min-height: 44px;
+  }
+}
+
+/* ===== Hero: stop the template's aspect-ratio band clipping the slider =====
+   .hero-banner keeps `aspect-ratio: 1536/688` from the original theme, so it
+   was 168px tall on a 375px phone while the slides are 70vh (491px) — only
+   36px of the headline survived. Above 1140px the band is taller than the
+   text, so nothing changes for wide screens. */
+@media (max-width: 1140px) {
+  .hero-banner {
+    aspect-ratio: auto;
+  }
+}
+/* Keep the typewriter card inside the band ABOVE the sticky ORDER NOW pill.
+   The pill is 144px tall, pinned 24px off the bottom and bounces up to
+   39px higher (scale 1.15 + translateY(-28px)); the hero starts at 152px.
+   Centring a 100vh slide's content in [hero top, pill's bounced top] works
+   out to a constant 360px of bottom padding at any window height
+   (a 80vh slide below 992px is the same formula minus 20vh). */
+@media (min-width: 992px) {
+  .hero-slide {
+    padding-bottom: 360px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-slide {
+    padding-bottom: calc(360px - 20vh);
+  }
+}
+/* Short windows (<= ~780px of viewport height, i.e. every common laptop):
+   the safe band shrinks, so compact the card the same way the phone layout
+   does — a full 186-character message at 1.7rem is 4 lines (~180px) instead
+   of 6 at the base 2.1rem. Taller viewports keep the big display size. */
+@media (min-width: 768px) and (max-height: 780px) {
+  .typewriter-container {
+    padding: 1rem 1.6rem;
+  }
+  .typewriter-text {
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    line-height: 1.35;
+  }
+}
+/* Tablet-width windows that are ALSO short (split-screen etc.): the header
+   sits at 228px in this band, so centring pushes the card's bottom edge into
+   the pill. Anchor it to the top of the hero instead — then only the card's
+   own bottom edge has to clear the bouncing pill, not the whole block. */
+@media (min-width: 768px) and (max-width: 991.98px) and (max-height: 700px) {
+  .hero-slide {
+    align-items: flex-start;
+  }
+  .hero-slide-content {
+    padding-top: 0.75rem;
+  }
+  .typewriter-text {
+    font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+  }
+}
+/* Below the desktop breakpoint the header stacks into 3-4 rows (toggler,
+   search, socials each on their own line) and eats the hero's breathing room.
+   The same social links live in the footer, so drop them here and tighten the
+   row padding — that hands ~65px back to the hero on phones. */
+@media (max-width: 991.98px) {
+  .nav-social {
+    display: none !important;
+  }
+  /* the CK/Tax line is a full-width block below lg and adds ~55px of header;
+     the same details now live in the footer-bottom for these screens */
+  .nav-registration {
+    display: none;
+  }
+}
+@media (max-width: 575.98px) {
+  header > .container-fluid > .row.py-3 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+}
+/* 720p laptops (~577px of height): only ~218px exists between the top of the
+   hero and the bouncing pill — shrink a size further and flatten the orbit's
+   vertical travel from +/-2vh to +/-1vh so the card always fits between them. */
+@media (min-width: 768px) and (max-height: 620px) {
+  .typewriter-container {
+    padding: 0.8rem 1.4rem;
+    animation-name: card-orbit-short;
+  }
+  .typewriter-text {
+    font-size: clamp(1.1rem, 2.1vw, 1.5rem);
+    line-height: 1.35;
+  }
+  @keyframes card-orbit-short {
+    0%    { transform: translate(0, -1vh); }
+    12%   { transform: translate(14vw, -0.75vh); }
+    25%   { transform: translate(20vw, 0); }
+    37%   { transform: translate(14vw, 0.75vh); }
+    50%   { transform: translate(0, 1vh); }
+    62%   { transform: translate(-14vw, 0.75vh); }
+    75%   { transform: translate(-20vw, 0); }
+    87%   { transform: translate(-14vw, -0.75vh); }
+    100%  { transform: translate(0, -1vh); }
+  }
+}
+@media (max-width: 767.98px) {
+  /* the sticky ORDER NOW pill is 112px tall at the bottom of the screen:
+     shrink the typewriter card and hold it above the pill so they never
+     sit on top of each other */
+  .hero-slide-content {
+    padding: 1rem 1rem 200px;
+  }
+  .typewriter-container {
+    padding: 1rem 1.25rem;
+  }
+  .typewriter-text {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+}
+/* 320px-wide legacy phones: header + strip + pill leave only ~155px between
+   them, so the card takes one more size down to keep the longest message
+   clear of the bouncing pill. The search icon column also wraps to its own
+   line at this width (col-11 + col-1 + gutters > 100%) and costs a whole
+   44px row of header — drop it, the input keeps working on its own. */
+@media (max-width: 359.98px) {
+  .typewriter-container {
+    padding: 0.75rem 1rem;
+  }
+  .typewriter-text {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+  .search-bar .col-1 {
+    display: none;
+  }
+  .search-bar .col-11 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
