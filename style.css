@@ -1272,3 +1272,67 @@ h2.section-title,
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
     "Helvetica Neue", "Inter", system-ui, sans-serif;
 }
+
+/* ===== Trusted payment gateways =====
+   Directly below the white rule under the navbar. Scrolls right — the opposite
+   direction to the feature-tiles marquee (translateX -50% -> 0, not 0 -> -50%). */
+.pay-strip {
+  background: #fff;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+  padding: 12px 0;
+  overflow: hidden;
+}
+.pay-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+.pay-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: pay-scroll 45s linear infinite;
+}
+.pay-track > * {
+  flex-shrink: 0;
+  margin-right: 18px;
+}
+.pay-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  min-width: 74px;
+  padding: 0 16px;
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 9px;
+  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.07);
+}
+.pay-badge img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+.pay-badge img.pay-square {
+  height: 30px;
+}
+.pay-badge.pay-name {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: #333;
+}
+@keyframes pay-scroll {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@media (max-width: 575.98px) {
+  .pay-strip { padding: 9px 0; }
+  .pay-badge { height: 40px; min-width: 64px; padding: 0 12px; }
+  .pay-badge img { height: 22px; }
+  .pay-badge img.pay-square { height: 26px; }
+  .pay-badge.pay-name { font-size: 0.9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pay-track { animation: none; }
+}
