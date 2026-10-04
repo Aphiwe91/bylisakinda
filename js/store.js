@@ -1,10 +1,9 @@
 /* AP Global Organics — store front-end.
-   Vanilla JS. Depends on PRODUCTS (js/products.js) and Bootstrap 5 (modal).
-   TODO: replace WHATSAPP_NUMBER with the real business WhatsApp number. */
+   Vanilla JS. Depends on PRODUCTS (js/products.js) and Bootstrap 5 (modal). */
 (function () {
   "use strict";
 
-  var WHATSAPP_NUMBER = "27000000000"; // placeholder — replace with the real number
+  var WHATSAPP_NUMBER = "27705571124"; // SA mobile: country code 27, no + or leading 0
   var FREE_DELIVERY = 500;             // free doorstep delivery over R500
   var SUBSCRIBE_DISCOUNT = 0.12;       // Subscribe & Save 12%
 
