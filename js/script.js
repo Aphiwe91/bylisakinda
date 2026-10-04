@@ -31,6 +31,23 @@
       },
     });
 
+    var hero_swiper = new Swiper(".hero-carousel", {
+      speed: 1200,
+      loop: true,
+      autoplay: {
+        delay: 9000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
     var category_swiper = new Swiper(".category-carousel", {
       slidesPerView: 8,
       spaceBetween: 30,

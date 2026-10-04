@@ -14,7 +14,7 @@ This is main CSS file that contains custom style rules used in this template
 /** VARIABLES
 --------------------------------------------------------------*/
 body {
-  --heading-font        : "Inter", sans-serif;
+  --heading-font        : -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", sans-serif;
   --bs-link-color: #333;
   --bs-link-hover-color:#333;
 
@@ -23,7 +23,7 @@ body {
 
   --bs-light-rgb: 248, 248, 248;
 
-  --bs-font-sans-serif: "Inter", sans-serif;
+  --bs-font-sans-serif: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", sans-serif;
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
@@ -839,7 +839,22 @@ html { scroll-behavior: smooth; }
   --ink: #111;
   --paper: #fff;
 }
-body { background: var(--paper); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
+body { background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif; }
+
+/* ===== Navbar: dark red → gold → green gradient, tuned to blend with the UI ===== */
+header {
+  background: linear-gradient(90deg, #C62828 0%, #E0A400 50%, #2E7D32 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.18);
+}
+header .row.border-bottom { border-bottom-color: rgba(255, 255, 255, 0.35); }
+/* keep nav links readable on the gradient */
+header .navbar-nav .nav-link { color: #fff !important; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+header .dropdown-menu { background: #fff; }
+/* form controls keep their own dark text on the light search bar */
+header .form-control,
+header .form-select { color: #212529; }
+header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
 
 /* ===== Hero: devoir-style minimal, text-centric ===== */
 .hero-banner { display: block; background: #111; padding: 0; overflow: hidden; }
@@ -969,19 +984,7 @@ footer a:hover { color: #fff; }
 .btn-outline-light:hover { background: #fff; color: #111; }
 
 
-/* ===== Hide ALL text except the WhatsApp ORDER NOW button ===== */
-body *:not(svg):not(use):not(path):not(rect):not(circle):not(#floating-whatsapp):not(#floating-whatsapp *):not(#ob-whatsapp):not(#ob-whatsapp *) {
-  color: transparent !important;
-  text-shadow: none !important;
-}
-.btn, button, input, select, textarea {
-  color: transparent !important;
-}
-.btn::before, .btn::after, button::before, button::after {
-  content: '' !important;
-}
-.swiper-pagination-bullet { background: transparent !important; }
-.swiper-pagination-bullet-active { background: var(--brand) !important; opacity: 0.6 !important; }
+/* ===== WhatsApp button text styling ===== */
 #floating-whatsapp, #floating-whatsapp *,
 #ob-whatsapp, #ob-whatsapp * {
   color: #fff !important;
@@ -999,35 +1002,206 @@ body *:not(svg):not(use):not(path):not(rect):not(circle):not(#floating-whatsapp)
   background-color: #25D366;
   color: #fff;
   border-radius: 50px;
-  padding: 14px 24px;
-  font-weight: 700;
+  padding: 20px 36px;
+  font-size: 1.3rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
   transition: transform .2s ease, box-shadow .2s ease;
+  animation: whatsapp-bounce 1.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 #floating-whatsapp:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55);
   color: #fff;
+  animation-play-state: paused;
 }
 #floating-whatsapp svg {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
+}
+@media (max-width: 575.98px) {
+  #floating-whatsapp {
+    padding: 16px 26px;
+    font-size: 1.1rem;
+  }
+  #floating-whatsapp svg {
+    width: 26px;
+    height: 26px;
+  }
 }
 
-/* ===== Hide ALL visible text except WhatsApp ORDER NOW buttons ===== */
-body *:not(svg):not(use):not(path):not(rect):not(circle):not(#floating-whatsapp):not(#floating-whatsapp *):not(#ob-whatsapp):not(#ob-whatsapp *) {
+@keyframes whatsapp-bounce {
+  0%, 10%, 30%, 50%, 70%, 85%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  18% {
+    transform: translateY(-28px) scale(1.15) rotate(-3deg);
+  }
+  38% {
+    transform: translateY(-18px) scale(1.08) rotate(2deg);
+  }
+  58% {
+    transform: translateY(-12px) scale(1.05) rotate(-2deg);
+  }
+  78% {
+    transform: translateY(-6px) scale(1.02) rotate(1deg);
+  }
+}
+
+/* ===== Hide text ONLY on landing page hero carousel ===== */
+.hero-slide-content *:not(.typewriter-text):not(.typewriter-cursor):not(.typewriter-container) {
   color: transparent !important;
   text-shadow: none !important;
 }
-#floating-whatsapp,
-#floating-whatsapp *,
-#ob-whatsapp,
-#ob-whatsapp * {
-  color: #fff !important;
+/* hidden hero headings must not push the typed card around or below the fold */
+.hero-slide-content h1,
+.hero-slide-content .lead {
+  display: none;
+}
+
+/* ===== Typewriter effect ===== */
+.typewriter-container {
+  position: relative;
+  display: block;
+  min-height: 6.5rem;
+  max-width: min(92vw, 900px);
+  margin: 0 auto;
+  padding: 1.4rem 2rem;
+  text-align: center;
+  border-radius: 18px;
+  /* frosted glass panel over the hero image */
+  background: rgba(10, 12, 10, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  /* orbit around the hero page */
+  animation: card-orbit 14s linear infinite;
+  will-change: transform;
+}
+/* the card travels a wide ellipse around the hero, constant speed */
+@keyframes card-orbit {
+  0%    { transform: translate(0, -11vh); }
+  12%   { transform: translate(14vw, -7.8vh); }
+  25%   { transform: translate(20vw, 0); }
+  37%   { transform: translate(14vw, 7.8vh); }
+  50%   { transform: translate(0, 11vh); }
+  62%   { transform: translate(-14vw, 7.8vh); }
+  75%   { transform: translate(-20vw, 0); }
+  87%   { transform: translate(-14vw, -7.8vh); }
+  100%  { transform: translate(0, -11vh); }
+}
+/* small screens: keep it centered with a gentle bob instead of the orbit */
+@media (max-width: 767.98px) {
+  .typewriter-container {
+    animation: card-float 6s ease-in-out infinite;
+    will-change: auto;
+  }
+}
+/* thin red → yellow → green rim, same palette as the navbar */
+.typewriter-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(90deg, #E53935, #FFC107, #43A047, #FFC107, #E53935);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: rim-flow 5s linear infinite;
+  pointer-events: none;
+}
+@keyframes card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes rim-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.typewriter-text {
+  display: block;
+  font-size: clamp(1.35rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  /* animated red → yellow → green gradient, sweeping across the words */
+  background: linear-gradient(90deg, #E53935 0%, #FFC107 25%, #43A047 50%, #FFC107 75%, #E53935 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  white-space: normal;
+  animation: gradient-sweep 6s linear infinite;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+}
+@keyframes gradient-sweep {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* brand name inside the typed message: bold, extra weight and spacing */
+.typewriter-text strong {
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- feature marquee (devoir.agency-style scrolling tiles + video) ---------- */
+.feature-marquee-section {
+  overflow: hidden;
+}
+.marquee {
+  width: 100%;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  animation: marquee-scroll 60s linear infinite;
+}
+.marquee-track > * {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+.marquee .card {
+  width: 460px;
+  border-radius: 14px;
+}
+.marquee-video {
+  width: 460px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #111;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (max-width: 767.98px) {
+  .marquee .card,
+  .marquee-video {
+    width: 300px;
+  }
+  .marquee .card {
+    padding: 1rem !important;
+  }
+  .marquee .card .card-text {
+    font-size: 0.875rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }

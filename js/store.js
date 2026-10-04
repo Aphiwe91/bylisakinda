@@ -112,7 +112,9 @@
     saveCart();
   });
 
-  document.getElementById("cart-checkout").addEventListener("click", function () {
+  var checkoutBtn = document.getElementById("cart-checkout");
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", function () {
     if (!cart.length) { showToast("Your cart is empty — add a product first"); return; }
     var msg = "Order — AP Global Organics\n\n";
     var total = 0;
@@ -125,6 +127,7 @@
     msg += "Please confirm availability and delivery time.";
     window.open(waLink(msg), "_blank");
   });
+}
 
   // ---------- product cards: add to cart, wishlist, quick view ----------
   var wishlist = new Set(loadJSON("ago_wishlist", []));
@@ -320,6 +323,7 @@
 
   // ---------- order builder ----------
   var obSelect = document.getElementById("ob-product");
+  if (!obSelect) return;
   PRODUCTS.forEach(function (p, i) {
     var o = document.createElement("option");
     o.value = i;
@@ -329,7 +333,9 @@
 
   function obRecalc() {
     var p = PRODUCTS[parseInt(obSelect.value, 10) || 0];
-    var size = parseInt(document.querySelector("input[name=\"ob-size\"]:checked").value, 10);
+    var sizeInput = document.querySelector("input[name=\"ob-size\"]:checked") ||
+      document.querySelector("input[name=\"ob-size\"]");
+    var size = parseInt(sizeInput.value, 10);
     var qty = Math.max(1, parseInt(document.getElementById("ob-qty").value, 10) || 1);
     var unit = p["p" + size];
     var subtotal = unit * qty;
@@ -361,7 +367,8 @@
     msg += "Delivery: " + (total >= FREE_DELIVERY ? "free doorstep delivery" : "calculated at checkout") + "\n";
     if (subscribe) msg += "Subscription: monthly or bi-monthly, skip or cancel anytime.\n";
     msg += "Please confirm availability and delivery time.";
-    document.getElementById("ob-whatsapp").href = waLink(msg);
+    var obWaBtn = document.getElementById("ob-whatsapp");
+    if (obWaBtn) obWaBtn.href = waLink(msg);
   }
 
   obSelect.addEventListener("change", obRecalc);
@@ -380,24 +387,32 @@
     q.value = Math.min(99, (parseInt(q.value, 10) || 1) + 1);
     obRecalc();
   });
-  document.getElementById("ob-copy").addEventListener("click", function () {
+  var obCopy = document.getElementById("ob-copy");
+  if (obCopy) {
+    obCopy.addEventListener("click", function () {
     var p = PRODUCTS[parseInt(obSelect.value, 10) || 0];
-    var size = document.querySelector("input[name=\"ob-size\"]:checked").value;
+    var sizeInput = document.querySelector("input[name=\"ob-size\"]:checked") ||
+      document.querySelector("input[name=\"ob-size\"]");
     var qty = document.getElementById("ob-qty").value;
-    copyText("Order — AP Global Organics: " + qty + "× " + p.name + " (" + size + "g pouch), total " +
+    copyText("Order — AP Global Organics: " + qty + "× " + p.name + " (" + sizeInput.value + "g pouch), total " +
       document.getElementById("ob-total").textContent + ". Please confirm availability and delivery.",
       "Order summary copied");
-  });
-  document.getElementById("ob-whatsapp").addEventListener("click", function () {
-    showToast("Opening WhatsApp with your order…");
-  });
+    });
+  }
+
+  var obWhatsApp = document.getElementById("ob-whatsapp");
+  if (obWhatsApp) {
+    obWhatsApp.addEventListener("click", function () {
+      showToast("Opening WhatsApp with your order…");
+    });
+  }
 
   // ---------- hero carousel ----------
   if (document.querySelector(".hero-carousel")) {
     new Swiper(".hero-carousel", {
       loop: true,
-      speed: 700,
-      autoplay: { delay: 5000, disableOnInteraction: false },
+      speed: 1200,
+      autoplay: { delay: 9000, disableOnInteraction: false },
       pagination: { el: ".hero-carousel .swiper-pagination", clickable: true },
       navigation: {
         nextEl: ".hero-carousel .swiper-button-next",
