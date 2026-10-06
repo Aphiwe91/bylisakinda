@@ -3,7 +3,7 @@
    Price formula: pack_price / pack_g x size x 1.7  (70% markup on cost), 2 dp.
    Oct 2026 retail overrides (hand-set, NOT in the costing sheet): Ashwagandha R30.00,
    Moringa R25.00, Turmeric R15.00, Fine Ginger R25.00, Ground Cloves R35.00,
-   Fine Black Pepper R30.00, Paprika R20.00, Cayenne Pepper Powder R20.00,
+   Fine Black Pepper R30.00, Paprika R15.00, Cayenne Pepper Powder R15.00,
    Fine Cinnamon R20.00, Fine Jeera R20.00, Garlic Powder R20.00 (all 80g); their 200g = 80g x 2.5.
    500g pouches discontinued -> p500 removed everywhere. */
 const PRODUCTS = [
@@ -184,8 +184,8 @@ const PRODUCTS = [
     "pack_price": 79.9,
     "cat": "Spices & Blends",
     "use": "Warm finishing spice for curries, dals and spiced chai.",
-    "p80": 20.00,
-    "p200": 50.00
+    "p80": 15.00,
+    "p200": 37.50
   },
   {
     "name": "Ground Cloves",
@@ -234,8 +234,8 @@ const PRODUCTS = [
     "pack_price": 80.4,
     "cat": "Spices & Blends",
     "use": "Signature house blend for hearty curries and potjies.",
-    "p80": 20.00,
-    "p200": 50.00
+    "p80": 15.00,
+    "p200": 37.50
   },
   {
     "name": "Oregano",
