@@ -109,16 +109,6 @@ const PRODUCTS = [
   },
   {
     "name": "Coarse Himalayan Pink Salt",
-    "photo": "images/product-photo-31.jpg",
-    "pack_g": 1000,
-    "pack_price": 23,
-    "cat": "Bulk & Staples",
-    "use": "Finishing salt for steaks, salads, caramels and rimming glasses.",
-    "p80": 3.13,
-    "p200": 7.82
-  },
-  {
-    "name": "Curry Powder",
     "photo": "images/product-photo-18.jpg",
     "pack_g": 500,
     "pack_price": 34.7,
@@ -248,7 +238,7 @@ const PRODUCTS = [
     "p200": 38.42
   },
   {
-    "name": "Peri-Peri Spice",
+    "name": "Cajun Spice",
     "photo": "images/product-photo-17.jpg",
     "pack_g": 500,
     "pack_price": 37.2,
@@ -305,12 +295,12 @@ const BUNDLES = [
   {
     "name": "Braai Master Trio",
     "price": 199.0,
-    "blurb": "Barbeque Spice, Crushed Chilli, Garlic Powder and Peri-Peri in four 80g pouches, with a wooden braai spoon — R199.",
+    "blurb": "Barbeque Spice, Crushed Chilli, Garlic Powder and Cajun Spice in four 80g pouches, with a wooden braai spoon — R199.",
     "products": [
       "Barbeque Spice",
       "Crushed Chilli",
       "Garlic Powder",
-      "Peri-Peri Spice"
+      "Cajun Spice"
     ]
   },
   {
