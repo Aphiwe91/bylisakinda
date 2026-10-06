@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# AP Global Organics — store front-end test suite (26 assertions).
+# AP Global Organics — store front-end test suite (33 assertions).
 # Prereq: preview server running on http://localhost:8001/
 #   cd . && nohup python3 -m http.server 8001 --bind :: > /tmp/organic-server.log 2>&1 &
 # Run: python3 tests/store_test.py
@@ -109,20 +109,43 @@ wait.until(EC.invisibility_of_element_located((By.ID, "product-modal")))
 check("quick-view add increments cart", txt("cart-count") == "2")
 check("cart total computed", txt("cart-total").startswith("R"))
 
-# 7. order builder
+# 7. order builder — the 80g/200g/500g pills were removed (commit 5f3a9a7) and left a
+#    hidden ob-size=80 input, so pouch size is fixed at 80g. #ob-subscribe is a hidden
+#    input too: store.js reads it via .checked, so drive it with checked + change event.
 check("builder default (80g x1)", txt("ob-total") == "R27.83")
-driver.find_element(By.CSS_SELECTOR, "label[for='ob-size-200']").click()
-check("builder 200g price", txt("ob-total") == "R69.56")
-driver.find_element(By.ID, "ob-subscribe").click()
-check("builder subscribe -12%", txt("ob-total") == "R61.21")  # 69.56*0.88
 driver.find_element(By.ID, "ob-plus").click()
-check("builder qty 2", txt("ob-total") == "R122.43")  # 139.12*0.88
+check("builder qty 2", txt("ob-total") == "R55.66")
+driver.find_element(By.ID, "ob-minus").click()
+check("builder qty back to 1", txt("ob-total") == "R27.83")
+
+driver.execute_script(
+    "var s = document.getElementById('ob-product'); s.value = '2'; s.dispatchEvent(new Event('change'));")
+p2 = driver.execute_script("return PRODUCTS[2]")
+check("builder product switch rewrites summary", p2["name"] in driver.find_element(By.ID, "ob-lines").text, p2["name"])
+check("builder total = selected product 80g",
+      txt("ob-total") == driver.execute_script("return 'R' + PRODUCTS[2].p80.toFixed(2)"), txt("ob-total"))
+
+driver.execute_script(
+    "var c = document.getElementById('ob-subscribe'); c.checked = true; c.dispatchEvent(new Event('change'));")
+check("builder subscribe -12%",
+      txt("ob-total") == driver.execute_script("return 'R' + (PRODUCTS[2].p80 * 0.88).toFixed(2)"), txt("ob-total"))
 check("subscribe discount row visible",
       driver.find_element(By.ID, "ob-save-row").value_of_css_property("display") != "none")
-wa_href = driver.find_element(By.ID, "ob-whatsapp").get_attribute("href")
-check("whatsapp link built", wa_href.startswith("https://wa.me/27000000000") and "?text=" in wa_href, wa_href[:55])
-driver.find_element(By.ID, "ob-subscribe").click()
-driver.find_element(By.CSS_SELECTOR, "label[for='ob-size-80']").click()
+
+driver.execute_script("var q = document.getElementById('ob-qty'); q.value = 99; q.dispatchEvent(new Event('input'));")
+check("builder free-delivery note at R500+", "Free doorstep delivery unlocked" in txt("ob-delivery-msg"),
+      txt("ob-delivery-msg"))
+
+driver.execute_script("""
+  var c = document.getElementById('ob-subscribe'); c.checked = false; c.dispatchEvent(new Event('change'));
+  var q = document.getElementById('ob-qty'); q.value = 1; q.dispatchEvent(new Event('input'));
+""")
+check("builder resets to 80g x1", txt("ob-total") == "R17.14", txt("ob-total"))
+
+# the only order CTA left in the markup is the floating WhatsApp button (no ob-whatsapp,
+# no cart-checkout — both were dropped along with the radios)
+check("whatsapp ORDER NOW CTA",
+      driver.find_element(By.ID, "floating-whatsapp").get_attribute("href").startswith("https://wa.me/"))
 
 # 8. scenario filter
 driver.find_element(By.CSS_SELECTOR, ".scenario-shop").click()
@@ -155,6 +178,34 @@ hero = driver.execute_script("""
 """)
 check("hero carousel live (4 slides, autoplay, 4 bullets)",
       hero and hero["slides"] == 4 and hero["autoplay"] and hero["bullets"] == 4, hero)
+
+# 10c. brand imagery — header emblem + Whole Spices & Seeds category thumb
+logo = driver.execute_script("""
+  var i = document.querySelector('.nav-logo');
+  if (!i) return null;
+  var b = i.getBoundingClientRect(), s = document.querySelector('.search-bar').getBoundingClientRect();
+  return {loaded: i.complete && i.naturalWidth > 0, w: Math.round(b.width), h: Math.round(b.height),
+          gap: Math.round(Math.abs((b.y + b.height/2) - (s.y + s.height/2)))};
+""")
+check("nav emblem loaded, 48px, level with the search bar",
+      logo and logo["loaded"] and logo["w"] == 48 and logo["h"] == 48 and logo["gap"] <= 1, logo)
+
+thumbs = driver.execute_script("""
+  return [['Whole Spices & Seeds', 'images/category/images.png', 640],
+          ['Adaptogens', 'images/category/adoptegens.png', 1680],
+          ['Superfoods', 'images/category/superfoods.png', 620],
+          ['Herbal Teas', 'images/category/herbal.png', 1500],
+          ['Curry Essentials', 'images/category/curry.png', 998],
+          ['AP ORGANICS', 'images/category/organ.png', 1024]].map(function(t){
+    var i = document.querySelector('img[alt=\"' + t[0] + '\"]');
+    return {alt: t[0], src: i ? i.getAttribute('src') : null,
+            loaded: !!i && i.complete && i.naturalWidth === t[2],
+            w: i ? Math.round(i.getBoundingClientRect().width) : 0};
+  });
+""")
+check("supplied CATEGORY thumbs point at images/category/ and decode (6 tiles)",
+      all(t["loaded"] and t["w"] == 140 and t["src"].startswith("images/category/")
+          for t in thumbs), [(t["alt"], t["src"]) for t in thumbs])
 
 # 11. console errors (exclude the known Google Fonts network warning)
 browser_errors = [l["message"] for l in driver.get_log("browser")
