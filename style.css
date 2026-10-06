@@ -1293,6 +1293,16 @@ footer a:hover { color: #fff; }
   border: 0;
   pointer-events: none;
 }
+
+/* copy next to the players: Apple type + leaf-green glow from the brand palette */
+.marquee .card h5,
+.marquee .card p.card-text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.75),
+    0 0 18px rgba(163, 190, 76, 0.8),
+    0 0 38px rgba(107, 178, 82, 0.55);
+}
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
