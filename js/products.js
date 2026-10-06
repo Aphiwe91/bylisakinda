@@ -109,7 +109,7 @@ const PRODUCTS = [
   },
   {
     "name": "Coarse Himalayan Pink Salt",
-    "photo": "images/product-photo-18.jpg",
+    "photo": "best/himalayan.png",
     "pack_g": 500,
     "pack_price": 34.7,
     "cat": "Spices & Blends",
