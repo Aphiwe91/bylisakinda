@@ -239,7 +239,7 @@ const PRODUCTS = [
   },
   {
     "name": "Cajun Spice",
-    "photo": "images/product-photo-17.jpg",
+    "photo": "best/cajun.png",
     "pack_g": 500,
     "pack_price": 37.2,
     "cat": "Spices & Blends",
