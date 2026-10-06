@@ -39,7 +39,7 @@ const PRODUCTS = [
   },
   {
     "name": "Barbeque Spice",
-    "photo": "images/product-photo-16.jpg",
+    "photo": "best/barbeque.png",
     "pack_g": 500,
     "pack_price": 33.5,
     "cat": "Spices & Blends",
@@ -69,7 +69,7 @@ const PRODUCTS = [
   },
   {
     "name": "Crushed Chilli",
-    "photo": "images/product-photo-15.jpg",
+    "photo": "best/crushed.png",
     "pack_g": 500,
     "pack_price": 46.5,
     "cat": "Spices & Blends",
