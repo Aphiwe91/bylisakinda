@@ -901,6 +901,35 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   .nav-reg-numbers { font-size: 0.85rem; }
 }
 
+/* brand emblem in the empty red band between the menu toggle and the search bar:
+   optically centred in the leftover space (auto margins) and on the search bar's
+   vertical midline, so it lines up with All Categories instead of floating */
+.nav-logo-link {
+  display: block;
+  line-height: 0;
+  align-self: center;
+}
+.nav-logo {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+  transition: transform .2s ease;
+}
+.nav-logo:hover,
+.nav-logo:focus-visible {
+  transform: scale(1.06);
+}
+@media (min-width: 576px) {
+  /* centre the emblem in the gap left of the search bar */
+  .nav-logo-link { margin-left: auto; margin-right: auto; }
+}
+@media (max-width: 575.98px) {
+  .nav-logo { width: 40px; height: 40px; }
+}
+
 /* social handles on the navbar */
 .nav-social a {
   color: #fff;
