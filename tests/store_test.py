@@ -191,22 +191,25 @@ check("nav emblem loaded, 48px, level with the search bar",
       logo and logo["loaded"] and logo["w"] == 48 and logo["h"] == 48 and logo["gap"] <= 1, logo)
 
 thumbs = driver.execute_script("""
-  return [['Whole Spices & Seeds', 'images/category/images.png', 640],
-          ['Adaptogens', 'images/category/adoptegens.png', 1680],
-          ['Superfoods', 'images/category/superfoods.png', 620],
-          ['Herbal Teas', 'images/category/herbal.png', 1500],
-          ['Curry Essentials', 'images/category/curry.png', 998],
-          ['AP ORGANICS', 'images/category/organ.png', 1024],
-          ['Dried Herbs', 'images/category/herbs.png', 1024]].map(function(t){
-    var i = document.querySelector('img[alt=\"' + t[0] + '\"]');
-    return {alt: t[0], src: i ? i.getAttribute('src') : null,
-            loaded: !!i && i.complete && i.naturalWidth === t[2],
-            w: i ? Math.round(i.getBoundingClientRect().width) : 0};
+  return [['Whole Spices & Seeds', 'images/category/images.png'],
+          ['Adaptogens', 'images/category/adoptegens.png'],
+          ['Superfoods', 'images/category/superfoods.png'],
+          ['Herbal Teas', 'images/category/herbal.png'],
+          ['Curry Essentials', 'images/category/curry.png'],
+          ['AP ORGANICS', 'images/category/organ.png'],
+          ['Dried Herbs', 'images/category/herbs.png'],
+          ['Incense & Wellness', 'images/category/incense.png']].map(function(t){
+    var i = document.querySelector('img[alt="' + t[0] + '"]');
+    var r = i ? i.getBoundingClientRect() : {width: 0};
+    return {alt: t[0], src: i ? i.getAttribute('src') : null, nw: i ? i.naturalWidth : 0,
+            decoded: !!i && i.complete && i.naturalWidth >= 400,  // floor, not exact: photos get re-supplied
+            w: Math.round(r.width)};
   });
 """)
+bad = [t for t in thumbs
+       if not (t["decoded"] and t["w"] == 140 and t["src"] and t["src"].startswith("images/category/"))]
 check("supplied CATEGORY thumbs point at images/category/ and decode (%d tiles)" % len(thumbs),
-      all(t["loaded"] and t["w"] == 140 and t["src"].startswith("images/category/")
-          for t in thumbs), [(t["alt"], t["src"]) for t in thumbs])
+      not bad, bad or "all decoded at >=400px, 140px circles")
 
 # 11. console errors (exclude the known Google Fonts network warning)
 browser_errors = [l["message"] for l in driver.get_log("browser")
