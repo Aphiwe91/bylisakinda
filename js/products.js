@@ -246,7 +246,7 @@ const PRODUCTS = [
     "p200": 62.5
   },
   {
-    "name": "Mother In Law Masala",
+    "name": "Paprika",
     "photo": "images/product-photo-8.jpg",
     "pack_g": 500,
     "pack_price": 80.4,
@@ -334,9 +334,9 @@ const BUNDLES = [
   {
     "name": "Cape Spice Route Box",
     "price": 399.0,
-    "blurb": "Mother In Law Masala, Cayenne Pepper Powder, Atlas Raj Curry and Turmeric, 200g each, in a heritage recipe box — R399.",
+    "blurb": "Paprika, Cayenne Pepper Powder, Atlas Raj Curry and Turmeric, 200g each, in a heritage recipe box — R399.",
     "products": [
-      "Mother In Law Masala",
+      "Paprika",
       "Cayenne Pepper Powder",
       "Atlas Raj Curry Powder",
       "Turmeric Powder"
