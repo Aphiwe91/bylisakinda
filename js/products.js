@@ -96,16 +96,6 @@ const PRODUCTS = [
     "p200": 14.28
   },
   {
-    "name": "Cayenne Pepper Powder",
-    "photo": "images/product-photo-19.jpg",
-    "pack_g": 500,
-    "pack_price": 40.6,
-    "cat": "Spices & Blends",
-    "use": "Clean, direct heat for hot sauces, wings and spice rubs.",
-    "p80": 11.04,
-    "p200": 27.61
-  },
-  {
     "name": "Chickpeas / Whole Chana",
     "photo": "images/product-photo-29.jpg",
     "pack_g": 500,
@@ -196,7 +186,7 @@ const PRODUCTS = [
     "p200": 48.55
   },
   {
-    "name": "Garam Masala",
+    "name": "Cayenne Pepper Powder",
     "photo": "images/product-photo-7.jpg",
     "pack_g": 500,
     "pack_price": 79.9,
@@ -344,10 +334,10 @@ const BUNDLES = [
   {
     "name": "Cape Spice Route Box",
     "price": 399.0,
-    "blurb": "Mother In Law Masala, Garam Masala, Atlas Raj Curry and Turmeric, 200g each, in a heritage recipe box — R399.",
+    "blurb": "Mother In Law Masala, Cayenne Pepper Powder, Atlas Raj Curry and Turmeric, 200g each, in a heritage recipe box — R399.",
     "products": [
       "Mother In Law Masala",
-      "Garam Masala",
+      "Cayenne Pepper Powder",
       "Atlas Raj Curry Powder",
       "Turmeric Powder"
     ]

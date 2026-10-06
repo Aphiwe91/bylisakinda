@@ -59,7 +59,7 @@ def visible_names():
     return [c["name"] for c in page_state() if c["visible"]]
 
 # 1. data layer
-check("PRODUCTS loaded", driver.execute_script("return PRODUCTS.length") == 31)
+check("PRODUCTS loaded", driver.execute_script("return PRODUCTS.length") == 30)
 check("BUNDLES loaded", driver.execute_script("return BUNDLES.length") == 3)
 check("no-results notes (1 grid + 3 carousels, not the hero swiper)",
       driver.execute_script("return document.querySelectorAll('.no-results').length") == 4)
@@ -67,7 +67,7 @@ check("no-results notes (1 grid + 3 carousels, not the hero swiper)",
 # 2. card inventory
 state = page_state()
 names = [c["name"] for c in state]
-check("37 product cards on page", len(state) == 37, len(state))
+check("36 product cards on page", len(state) == 36, len(state))
 check("all cards have names", all(names), [n for n in names if not n][:3])
 
 # 3. search filter
@@ -79,7 +79,7 @@ expected = [n for n in names if "turmeric" in n.lower()]
 check("search 'turmeric' filters correctly", sorted(vis) == sorted(expected), f"{len(vis)} visible, expected {len(expected)}")
 si.clear()
 driver.execute_script("document.getElementById('search-input').dispatchEvent(new Event('input'))")
-check("clearing search restores all", len(visible_names()) == 37, len(visible_names()))
+check("clearing search restores all", len(visible_names()) == 36, len(visible_names()))
 
 # 4. category filter
 cs = driver.find_element(By.ID, "category-filter")
@@ -89,7 +89,7 @@ herbs = ["Thyme", "Oregano", "Italian Herbs", "Bay Leaves", "Dried Parsley", "Ba
 expected_herbs = [n for n in names if any(h in n for h in herbs)]
 check("category 'Herbs' filters correctly", sorted(vis) == sorted(expected_herbs), f"{len(vis)} visible, expected {len(expected_herbs)}")
 cs.find_element(By.XPATH, "//option[@value='']").click()
-check("category reset restores all", len(visible_names()) == 37)
+check("category reset restores all", len(visible_names()) == 36)
 
 # 5. add to cart (first grid card — button-area is now always visible)
 first_name = driver.execute_script(
@@ -153,7 +153,7 @@ vis = visible_names()
 expected_scenario = [n for n in names if n in ("Ashwagandha Powder (Indian Ginseng)", "Moringa Powder")]
 check("scenario filter shows only scenario products", sorted(vis) == sorted(expected_scenario), f"{len(vis)} visible")
 driver.find_element(By.ID, "scenario-reset").click()
-check("scenario reset shows all", len(visible_names()) == 37, len(visible_names()))
+check("scenario reset shows all", len(visible_names()) == 36, len(visible_names()))
 
 # 9. delivery note appears at R500+ (20x ashwagandha 80g = R600.00)
 driver.execute_script("document.querySelector('.product-grid .quantity').value = 20;")
