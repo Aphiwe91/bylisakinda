@@ -1275,6 +1275,24 @@ footer a:hover { color: #fff; }
   object-fit: cover;
   background: #111;
 }
+/* YouTube player filling the same tile: 16:9 box scaled up to cover, cropped by the wrapper */
+.marquee-video-yt {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.marquee-video-yt > iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  min-height: 100%;
+  border: 0;
+  pointer-events: none;
+}
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
