@@ -940,6 +940,27 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
     order: -1;
   }
 }
+
+/* Phones: bring the CK/Tax block back and centre it in the empty stretch
+   left of the search bar (it used to be hidden below lg). */
+header { position: relative; }
+@media (max-width: 575.98px) {
+  .nav-registration {
+    display: flex !important;
+    position: absolute;
+    top: 0;
+    right: 12px;
+    left: 140px;
+    height: 58px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    padding: 0;
+  }
+  .nav-reg-name { font-size: 0.95rem; }
+  .nav-reg-numbers { font-size: 0.78rem; }
+}
 @media (max-width: 575.98px) {
   .nav-logo { width: 40px; height: 40px; }
 }
