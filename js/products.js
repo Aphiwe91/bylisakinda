@@ -68,7 +68,7 @@ const PRODUCTS = [
     "p200": 69.36
   },
   {
-    "name": "Biltong Spice",
+    "name": "Crushed Chilli",
     "photo": "images/product-photo-15.jpg",
     "pack_g": 500,
     "pack_price": 46.5,
@@ -116,16 +116,6 @@ const PRODUCTS = [
     "use": "Finishing salt for steaks, salads, caramels and rimming glasses.",
     "p80": 3.13,
     "p200": 7.82
-  },
-  {
-    "name": "Crushed Chilli",
-    "photo": "images/product-photo-20.jpg",
-    "pack_g": 500,
-    "pack_price": 58.9,
-    "cat": "Spices & Blends",
-    "use": "Rustic chilli flakes for pizzas, pastas and spicy oils.",
-    "p80": 16.02,
-    "p200": 40.05
   },
   {
     "name": "Curry Powder",
@@ -198,16 +188,6 @@ const PRODUCTS = [
     "p200": 50.00
   },
   {
-    "name": "Garlic Powder",
-    "photo": "images/product-photo-12.jpg",
-    "pack_g": 500,
-    "pack_price": 50.5,
-    "cat": "Spices & Blends",
-    "use": "Instant savoury base for marinades, rubs, soups and chip seasoning.",
-    "p80": 13.74,
-    "p200": 34.34
-  },
-  {
     "name": "Ground Cloves",
     "photo": "images/product-photo-5.jpg",
     "pack_g": 500,
@@ -278,7 +258,7 @@ const PRODUCTS = [
     "p200": 25.3
   },
   {
-    "name": "Smoked Paprika",
+    "name": "Garlic Powder",
     "photo": "images/product-photo-11.jpg",
     "pack_g": 500,
     "pack_price": 68.4,
@@ -325,11 +305,11 @@ const BUNDLES = [
   {
     "name": "Braai Master Trio",
     "price": 199.0,
-    "blurb": "Barbeque Spice, Biltong Spice, Smoked Paprika and Peri-Peri in four 80g pouches, with a wooden braai spoon — R199.",
+    "blurb": "Barbeque Spice, Crushed Chilli, Garlic Powder and Peri-Peri in four 80g pouches, with a wooden braai spoon — R199.",
     "products": [
       "Barbeque Spice",
-      "Biltong Spice",
-      "Smoked Paprika",
+      "Crushed Chilli",
+      "Garlic Powder",
       "Peri-Peri Spice"
     ]
   },
