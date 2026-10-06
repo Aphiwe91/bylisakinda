@@ -4,7 +4,7 @@
    Oct 2026 retail overrides (hand-set, NOT in the costing sheet): Ashwagandha R30.00,
    Moringa R25.00, Turmeric R15.00, Fine Ginger R25.00, Ground Cloves R35.00,
    Fine Black Pepper R30.00, Paprika R20.00, Cayenne Pepper Powder R20.00,
-   Fine Cinnamon R20.00, Fine Jeera R20.00 (all 80g); their 200g = 80g x 2.5.
+   Fine Cinnamon R20.00, Fine Jeera R20.00, Garlic Powder R20.00 (all 80g); their 200g = 80g x 2.5.
    500g pouches discontinued -> p500 removed everywhere. */
 const PRODUCTS = [
   {
@@ -18,8 +18,8 @@ const PRODUCTS = [
     "p200": 75.0
   },
   {
-    "name": "Atlas Butter Chicken Spice",
-    "photo": "images/product-photo-13.jpg",
+    "name": "Butter Chicken Spice",
+    "photo": "best/butter.png",
     "pack_g": 500,
     "pack_price": 69.6,
     "cat": "Spices & Blends",
@@ -28,8 +28,8 @@ const PRODUCTS = [
     "p200": 47.33
   },
   {
-    "name": "Atlas Raj Curry Powder",
-    "photo": "images/product-photo-14.jpg",
+    "name": "Raj Curry Powder",
+    "photo": "best/raj.png",
     "pack_g": 500,
     "pack_price": 63,
     "cat": "Spices & Blends",
@@ -259,13 +259,13 @@ const PRODUCTS = [
   },
   {
     "name": "Garlic Powder",
-    "photo": "images/product-photo-11.jpg",
+    "photo": "best/garlic.png",
     "pack_g": 500,
     "pack_price": 68.4,
     "cat": "Spices & Blends",
     "use": "Smoky depth for rubs, chorizo, deviled eggs and braai spice.",
-    "p80": 18.6,
-    "p200": 46.51
+    "p80": 20.00,
+    "p200": 50.00
   },
   {
     "name": "Thyme",
@@ -316,11 +316,11 @@ const BUNDLES = [
   {
     "name": "Cape Spice Route Box",
     "price": 399.0,
-    "blurb": "Paprika, Cayenne Pepper Powder, Atlas Raj Curry and Turmeric, 200g each, in a heritage recipe box — R399.",
+    "blurb": "Paprika, Cayenne Pepper Powder, Raj Curry and Turmeric, 200g each, in a heritage recipe box — R399.",
     "products": [
       "Paprika",
       "Cayenne Pepper Powder",
-      "Atlas Raj Curry Powder",
+      "Raj Curry Powder",
       "Turmeric Powder"
     ]
   }
