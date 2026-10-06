@@ -926,6 +926,20 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   /* centre the emblem in the gap left of the search bar */
   .nav-logo-link { margin-left: auto; margin-right: auto; }
 }
+
+/* On phones the header's first row wraps full-width and centres its
+   contents; keep the toggle + emblem packed on the red (left) stretch
+   of the navbar gradient instead of floating over the gold/middle */
+@media (max-width: 575.98px) {
+  /* !important beats Bootstrap's .justify-content-center !important */
+  header .row.py-3.border-bottom > div:first-child {
+    justify-content: flex-start !important;
+  }
+  /* emblem first so it sits on the solid red band, toggle right next to it */
+  header .row.py-3.border-bottom > div:first-child .nav-logo-link {
+    order: -1;
+  }
+}
 @media (max-width: 575.98px) {
   .nav-logo { width: 40px; height: 40px; }
 }
