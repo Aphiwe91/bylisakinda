@@ -195,7 +195,6 @@
     document.getElementById("pm-cost").textContent = "R" + (p.pack_price / p.pack_g).toFixed(4) + " /g";
     document.getElementById("pm-p80").textContent = money(p.p80);
     document.getElementById("pm-p200").textContent = money(p.p200);
-    document.getElementById("pm-p500").textContent = money(p.p500);
     if (!modal) modal = new bootstrap.Modal(document.getElementById("product-modal"));
     modal.show();
   }
@@ -342,7 +341,7 @@
     var discount = subscribe ? subtotal * SUBSCRIBE_DISCOUNT : 0;
     var total = subtotal - discount;
 
-    var sizeNote = size === 500 ? " (best value)" : (size === 80 ? " (trial size)" : "");
+    var sizeNote = size === 80 ? " (trial size)" : "";
     document.getElementById("ob-lines").innerHTML =
       "<div class=\"d-flex justify-content-between\"><span class=\"fw-semibold\">" + esc(p.name) + "</span>" +
       "<span>" + money(unit) + " × " + qty + "</span></div>" +

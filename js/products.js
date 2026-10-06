@@ -1,6 +1,9 @@
 /* AP Global Organics — product data.
    Generated from atlas_80g_costing.xlsx (source of truth for pack sizes and prices).
-   Price formula: pack_price / pack_g x size x 1.7  (70% markup on cost), 2 dp. */
+   Price formula: pack_price / pack_g x size x 1.7  (70% markup on cost), 2 dp.
+   Oct 2026 retail overrides (hand-set, NOT in the costing sheet): Ashwagandha R30.00,
+   Moringa R25.00, Turmeric R15.00, Fine Ginger R25.00, Ground Cloves R35.00 (all 80g);
+   their 200g = 80g x 2.5. 500g pouches discontinued -> p500 removed everywhere. */
 const PRODUCTS = [
   {
     "name": "Ashwagandha Powder (Indian Ginseng)",
@@ -9,9 +12,8 @@ const PRODUCTS = [
     "pack_price": 102.3,
     "cat": "Adaptogens & Wellness",
     "use": "Stress-balancing adaptogen — stir into morning coffee, smoothies or golden milk.",
-    "p80": 27.83,
-    "p200": 69.56,
-    "p500": 173.91
+    "p80": 30.0,
+    "p200": 75.0
   },
   {
     "name": "Atlas Butter Chicken Spice",
@@ -21,8 +23,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Creamy butter-chicken base — tomato, cream and spice in one jar.",
     "p80": 18.93,
-    "p200": 47.33,
-    "p500": 118.32
+    "p200": 47.33
   },
   {
     "name": "Atlas Raj Curry Powder",
@@ -32,8 +33,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Mild, golden Raj curry base for everyday family meals.",
     "p80": 17.14,
-    "p200": 42.84,
-    "p500": 107.1
+    "p200": 42.84
   },
   {
     "name": "Barbeque Spice",
@@ -43,8 +43,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "The braai rub — slap it on chicken, ribs, wors and corn.",
     "p80": 9.11,
-    "p200": 22.78,
-    "p500": 56.95
+    "p200": 22.78
   },
   {
     "name": "Basil",
@@ -54,8 +53,7 @@ const PRODUCTS = [
     "cat": "Herbs",
     "use": "The pesto herb — tomatoes, salads, pizzas and caprese.",
     "p80": 15.37,
-    "p200": 38.42,
-    "p500": 96.05
+    "p200": 38.42
   },
   {
     "name": "Bay Leaves",
@@ -65,8 +63,7 @@ const PRODUCTS = [
     "cat": "Herbs",
     "use": "Slow-cooked depth for potjies, stews, curries and rice.",
     "p80": 27.74,
-    "p200": 69.36,
-    "p500": 173.4
+    "p200": 69.36
   },
   {
     "name": "Biltong Spice",
@@ -76,8 +73,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "The classic biltong cure — also great on roasted potatoes.",
     "p80": 12.65,
-    "p200": 31.62,
-    "p500": 79.05
+    "p200": 31.62
   },
   {
     "name": "Birds Eye Chili Powder",
@@ -87,8 +83,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Serious heat for peri-peri sauces, piri-piri chicken and spicy braais.",
     "p80": 25.95,
-    "p200": 64.87,
-    "p500": 162.18
+    "p200": 64.87
   },
   {
     "name": "Cassava Flour",
@@ -98,8 +93,7 @@ const PRODUCTS = [
     "cat": "Baking & Pantry",
     "use": "Grain-free 1:1 wheat swap for scones, pancakes and flatbreads.",
     "p80": 5.71,
-    "p200": 14.28,
-    "p500": 35.7
+    "p200": 14.28
   },
   {
     "name": "Cayenne Pepper Powder",
@@ -109,8 +103,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Clean, direct heat for hot sauces, wings and spice rubs.",
     "p80": 11.04,
-    "p200": 27.61,
-    "p500": 69.02
+    "p200": 27.61
   },
   {
     "name": "Chickpeas / Whole Chana",
@@ -120,8 +113,7 @@ const PRODUCTS = [
     "cat": "Bulk & Staples",
     "use": "Soak and boil for curries, chana masala, salads and hummus.",
     "p80": 6.8,
-    "p200": 17.0,
-    "p500": 42.5
+    "p200": 17.0
   },
   {
     "name": "Coarse Himalayan Pink Salt",
@@ -131,8 +123,7 @@ const PRODUCTS = [
     "cat": "Bulk & Staples",
     "use": "Finishing salt for steaks, salads, caramels and rimming glasses.",
     "p80": 3.13,
-    "p200": 7.82,
-    "p500": 19.55
+    "p200": 7.82
   },
   {
     "name": "Crushed Chilli",
@@ -142,8 +133,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Rustic chilli flakes for pizzas, pastas and spicy oils.",
     "p80": 16.02,
-    "p200": 40.05,
-    "p500": 100.13
+    "p200": 40.05
   },
   {
     "name": "Curry Powder",
@@ -153,8 +143,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Everyday curry base for chicken, beans, lentils and rice.",
     "p80": 9.44,
-    "p200": 23.6,
-    "p500": 58.99
+    "p200": 23.6
   },
   {
     "name": "Dried Parsley",
@@ -164,8 +153,7 @@ const PRODUCTS = [
     "cat": "Herbs",
     "use": "Fresh-finish herb for salads, eggs, fish and potato bakes.",
     "p80": 14.55,
-    "p200": 36.38,
-    "p500": 90.95
+    "p200": 36.38
   },
   {
     "name": "Fine Black Pepper",
@@ -175,8 +163,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Fresh-ground pepper for everything — also unlocks turmeric's curcumin.",
     "p80": 36.94,
-    "p200": 92.34,
-    "p500": 230.86
+    "p200": 92.34
   },
   {
     "name": "Fine Cinnamon",
@@ -186,8 +173,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Sweet and savoury — porridge, chai, curries and baked apples.",
     "p80": 20.07,
-    "p200": 50.18,
-    "p500": 125.46
+    "p200": 50.18
   },
   {
     "name": "Fine Ginger",
@@ -196,9 +182,8 @@ const PRODUCTS = [
     "pack_price": 85.2,
     "cat": "Spices & Blends",
     "use": "Fresh-tasting warmth for teas, curries, baking and golden milk.",
-    "p80": 23.17,
-    "p200": 57.94,
-    "p500": 144.84
+    "p80": 25.0,
+    "p200": 62.5
   },
   {
     "name": "Fine Jeera (Cumin)",
@@ -208,8 +193,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Toasted cumin for curries, rice, dals and house spice blends.",
     "p80": 19.42,
-    "p200": 48.55,
-    "p500": 121.38
+    "p200": 48.55
   },
   {
     "name": "Garam Masala",
@@ -219,8 +203,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Warm finishing spice for curries, dals and spiced chai.",
     "p80": 21.73,
-    "p200": 54.33,
-    "p500": 135.83
+    "p200": 54.33
   },
   {
     "name": "Garlic Powder",
@@ -230,8 +213,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Instant savoury base for marinades, rubs, soups and chip seasoning.",
     "p80": 13.74,
-    "p200": 34.34,
-    "p500": 85.85
+    "p200": 34.34
   },
   {
     "name": "Ground Cloves",
@@ -240,9 +222,8 @@ const PRODUCTS = [
     "pack_price": 135.5,
     "cat": "Spices & Blends",
     "use": "Intense warm spice for curries, chai, ham and baked fruit.",
-    "p80": 36.86,
-    "p200": 92.14,
-    "p500": 230.35
+    "p80": 35.0,
+    "p200": 87.5
   },
   {
     "name": "Italian Herbs",
@@ -252,8 +233,7 @@ const PRODUCTS = [
     "cat": "Herbs",
     "use": "The Italian kitchen mix — pizza, pasta, garlic bread and salads.",
     "p80": 29.92,
-    "p200": 74.8,
-    "p500": 187.0
+    "p200": 74.8
   },
   {
     "name": "Kowdi Lubaan (Frank Incense)",
@@ -263,8 +243,7 @@ const PRODUCTS = [
     "cat": "Adaptogens & Wellness",
     "use": "Frankincense resin — traditional wellness tea, or burn as ceremonial incense.",
     "p80": 19.86,
-    "p200": 49.64,
-    "p500": 124.1
+    "p200": 49.64
   },
   {
     "name": "Moringa Powder",
@@ -273,9 +252,8 @@ const PRODUCTS = [
     "pack_price": 79,
     "cat": "Adaptogens & Wellness",
     "use": "Nutrient-dense superleaf — blend into smoothies, juices or sprinkle over porridge.",
-    "p80": 21.49,
-    "p200": 53.72,
-    "p500": 134.3
+    "p80": 25.0,
+    "p200": 62.5
   },
   {
     "name": "Mother In Law Masala",
@@ -285,8 +263,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Signature house blend for hearty curries and potjies.",
     "p80": 21.87,
-    "p200": 54.67,
-    "p500": 136.68
+    "p200": 54.67
   },
   {
     "name": "Oregano",
@@ -296,8 +273,7 @@ const PRODUCTS = [
     "cat": "Herbs",
     "use": "Pizza and pasta staple — tomatoes, grilled meats and Mediterranean dishes.",
     "p80": 15.37,
-    "p200": 38.42,
-    "p500": 96.05
+    "p200": 38.42
   },
   {
     "name": "Peri-Peri Spice",
@@ -307,8 +283,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "The classic peri-peri marinade — baste chicken, prawns or chips.",
     "p80": 10.12,
-    "p200": 25.3,
-    "p500": 63.24
+    "p200": 25.3
   },
   {
     "name": "Smoked Paprika",
@@ -318,8 +293,7 @@ const PRODUCTS = [
     "cat": "Spices & Blends",
     "use": "Smoky depth for rubs, chorizo, deviled eggs and braai spice.",
     "p80": 18.6,
-    "p200": 46.51,
-    "p500": 116.28
+    "p200": 46.51
   },
   {
     "name": "Thyme",
@@ -329,8 +303,7 @@ const PRODUCTS = [
     "cat": "Herbs",
     "use": "Woody herb for roasts, stews, soups and braai corn.",
     "p80": 17.82,
-    "p200": 44.54,
-    "p500": 111.35
+    "p200": 44.54
   },
   {
     "name": "Turmeric Powder",
@@ -339,9 +312,8 @@ const PRODUCTS = [
     "pack_price": 42.7,
     "cat": "Spices & Blends",
     "use": "Golden teas, curries, rice and smoothies — the base of every golden milk.",
-    "p80": 11.61,
-    "p200": 29.04,
-    "p500": 72.59
+    "p80": 15.0,
+    "p200": 37.5
   }
 ];
 

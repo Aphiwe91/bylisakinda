@@ -109,14 +109,14 @@ wait.until(EC.invisibility_of_element_located((By.ID, "product-modal")))
 check("quick-view add increments cart", txt("cart-count") == "2")
 check("cart total computed", txt("cart-total").startswith("R"))
 
-# 7. order builder — the 80g/200g/500g pills were removed (commit 5f3a9a7) and left a
+# 7. order builder — the size pills were removed (commit 5f3a9a7), 500g is gone, and
 #    hidden ob-size=80 input, so pouch size is fixed at 80g. #ob-subscribe is a hidden
 #    input too: store.js reads it via .checked, so drive it with checked + change event.
-check("builder default (80g x1)", txt("ob-total") == "R27.83")
+check("builder default (80g x1)", txt("ob-total") == "R30.00")
 driver.find_element(By.ID, "ob-plus").click()
-check("builder qty 2", txt("ob-total") == "R55.66")
+check("builder qty 2", txt("ob-total") == "R60.00")
 driver.find_element(By.ID, "ob-minus").click()
-check("builder qty back to 1", txt("ob-total") == "R27.83")
+check("builder qty back to 1", txt("ob-total") == "R30.00")
 
 driver.execute_script(
     "var s = document.getElementById('ob-product'); s.value = '2'; s.dispatchEvent(new Event('change'));")
@@ -155,7 +155,7 @@ check("scenario filter shows only scenario products", sorted(vis) == sorted(expe
 driver.find_element(By.ID, "scenario-reset").click()
 check("scenario reset shows all", len(visible_names()) == 37, len(visible_names()))
 
-# 9. delivery note appears at R500+ (20x ashwagandha 80g = R556.60)
+# 9. delivery note appears at R500+ (20x ashwagandha 80g = R600.00)
 driver.execute_script("document.querySelector('.product-grid .quantity').value = 20;")
 driver.find_element(By.CSS_SELECTOR, ".product-grid .btn-cart").click()
 note = driver.find_element(By.ID, "cart-delivery-note").text
