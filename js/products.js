@@ -2,8 +2,10 @@
    Generated from atlas_80g_costing.xlsx (source of truth for pack sizes and prices).
    Price formula: pack_price / pack_g x size x 1.7  (70% markup on cost), 2 dp.
    Oct 2026 retail overrides (hand-set, NOT in the costing sheet): Ashwagandha R30.00,
-   Moringa R25.00, Turmeric R15.00, Fine Ginger R25.00, Ground Cloves R35.00 (all 80g);
-   their 200g = 80g x 2.5. 500g pouches discontinued -> p500 removed everywhere. */
+   Moringa R25.00, Turmeric R15.00, Fine Ginger R25.00, Ground Cloves R35.00,
+   Fine Black Pepper R30.00, Paprika R20.00, Cayenne Pepper Powder R20.00,
+   Fine Cinnamon R20.00, Fine Jeera R20.00 (all 80g); their 200g = 80g x 2.5.
+   500g pouches discontinued -> p500 removed everywhere. */
 const PRODUCTS = [
   {
     "name": "Ashwagandha Powder (Indian Ginseng)",
@@ -152,8 +154,8 @@ const PRODUCTS = [
     "pack_price": 135.8,
     "cat": "Spices & Blends",
     "use": "Fresh-ground pepper for everything — also unlocks turmeric's curcumin.",
-    "p80": 36.94,
-    "p200": 92.34
+    "p80": 30.00,
+    "p200": 75.00
   },
   {
     "name": "Fine Cinnamon",
@@ -162,8 +164,8 @@ const PRODUCTS = [
     "pack_price": 73.8,
     "cat": "Spices & Blends",
     "use": "Sweet and savoury — porridge, chai, curries and baked apples.",
-    "p80": 20.07,
-    "p200": 50.18
+    "p80": 20.00,
+    "p200": 50.00
   },
   {
     "name": "Fine Ginger",
@@ -182,8 +184,8 @@ const PRODUCTS = [
     "pack_price": 71.4,
     "cat": "Spices & Blends",
     "use": "Toasted cumin for curries, rice, dals and house spice blends.",
-    "p80": 19.42,
-    "p200": 48.55
+    "p80": 20.00,
+    "p200": 50.00
   },
   {
     "name": "Cayenne Pepper Powder",
@@ -192,8 +194,8 @@ const PRODUCTS = [
     "pack_price": 79.9,
     "cat": "Spices & Blends",
     "use": "Warm finishing spice for curries, dals and spiced chai.",
-    "p80": 21.73,
-    "p200": 54.33
+    "p80": 20.00,
+    "p200": 50.00
   },
   {
     "name": "Garlic Powder",
@@ -252,8 +254,8 @@ const PRODUCTS = [
     "pack_price": 80.4,
     "cat": "Spices & Blends",
     "use": "Signature house blend for hearty curries and potjies.",
-    "p80": 21.87,
-    "p200": 54.67
+    "p80": 20.00,
+    "p200": 50.00
   },
   {
     "name": "Oregano",
