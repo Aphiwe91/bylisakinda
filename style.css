@@ -1058,10 +1058,11 @@ header { position: relative; }
   font-size: 2rem; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em;
 }
 .glow-banner {
+  color: #fff;
   text-shadow:
-    0 0 6px rgba(255, 255, 255, 0.8),
-    0 0 18px rgba(163, 190, 76, 0.85),
-    0 0 38px rgba(107, 178, 82, 0.6);
+    0 0 8px rgba(255, 255, 255, 0.95),
+    0 0 20px rgba(255, 255, 255, 0.75),
+    0 0 40px rgba(107, 178, 82, 0.45);
 }
 .banner-ad::before {
   content: ''; position: absolute; inset: 0;
