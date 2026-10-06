@@ -196,14 +196,15 @@ thumbs = driver.execute_script("""
           ['Superfoods', 'images/category/superfoods.png', 620],
           ['Herbal Teas', 'images/category/herbal.png', 1500],
           ['Curry Essentials', 'images/category/curry.png', 998],
-          ['AP ORGANICS', 'images/category/organ.png', 1024]].map(function(t){
+          ['AP ORGANICS', 'images/category/organ.png', 1024],
+          ['Dried Herbs', 'images/category/herbs.png', 1024]].map(function(t){
     var i = document.querySelector('img[alt=\"' + t[0] + '\"]');
     return {alt: t[0], src: i ? i.getAttribute('src') : null,
             loaded: !!i && i.complete && i.naturalWidth === t[2],
             w: i ? Math.round(i.getBoundingClientRect().width) : 0};
   });
 """)
-check("supplied CATEGORY thumbs point at images/category/ and decode (6 tiles)",
+check("supplied CATEGORY thumbs point at images/category/ and decode (%d tiles)" % len(thumbs),
       all(t["loaded"] and t["w"] == 140 and t["src"].startswith("images/category/")
           for t in thumbs), [(t["alt"], t["src"]) for t in thumbs])
 
