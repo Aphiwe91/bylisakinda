@@ -1764,27 +1764,25 @@ img {
   }
 }
 
-/* ---- Custom cursor ("magic mouse", a la devoir.agency) ---- */
+/* ---- Custom cursor ("magic mouse", exactly matching devoir.agency) ---- */
 #magicMouseCursor {
   position: fixed; top: 0; left: 0;
-  width: 30px; height: 30px;
-  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  width: 41px; height: 41px;
+  border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.1);
   pointer-events: none;
-  z-index: 99998;
-  mix-blend-mode: difference;
+  z-index: 10000000;
   box-sizing: border-box;
 }
-#magicMouseCursor.cursor-square { border-radius: 14px; }
 #magicPointer {
   position: fixed; top: 0; left: 0;
-  width: 6px; height: 6px;
-  background: #fff;
+  width: 5px; height: 5px;
+  background: rgb(195, 185, 144);
+  border: 0;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 99999;
-  mix-blend-mode: difference;
+  z-index: 10000000;
 }
 body, a, button, input, textarea, select, label, [role="button"] {
   cursor: none;
@@ -1792,4 +1790,6 @@ body, a, button, input, textarea, select, label, [role="button"] {
 @media (pointer: coarse) {
   #magicMouseCursor, #magicPointer { display: none; }
   body, a, button, input, textarea, select, label, [role="button"] { cursor: auto; }
+}
+
 }
