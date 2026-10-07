@@ -1763,3 +1763,33 @@ img {
     max-width: 100%;
   }
 }
+
+/* ---- Custom cursor ("magic mouse", a la devoir.agency) ---- */
+#magicMouseCursor {
+  position: fixed; top: 0; left: 0;
+  width: 30px; height: 30px;
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  z-index: 99998;
+  mix-blend-mode: difference;
+  box-sizing: border-box;
+}
+#magicMouseCursor.cursor-square { border-radius: 14px; }
+#magicPointer {
+  position: fixed; top: 0; left: 0;
+  width: 6px; height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+body, a, button, input, textarea, select, label, [role="button"] {
+  cursor: none;
+}
+@media (pointer: coarse) {
+  #magicMouseCursor, #magicPointer { display: none; }
+  body, a, button, input, textarea, select, label, [role="button"] { cursor: auto; }
+}
