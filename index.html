@@ -2549,9 +2549,7 @@
     </script>
     <script>
     (function () {
-      var targets = 'a, button, input, select, textarea, label, .product-item, .scenario-card, .banner-ad, .btn, .swiper-slide, [role="button"]';
-      document.querySelectorAll(targets).forEach(function (el) { el.classList.add('magic-hover'); });
-      if (typeof magicMouse === 'function') { magicMouse({}); }
+      if (typeof magicMouse === 'function') { magicMouse({"cursorOuter":"circle-basic","hoverEffect":"circle-move","hoverItemMove":false,"defaultCursor":false,"outerWidth":41,"outerHeight":41}); }
     })();
     </script>
 
