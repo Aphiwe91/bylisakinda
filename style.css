@@ -1025,12 +1025,13 @@ header { position: relative; }
 @media (max-width: 991px) { .hero-slide { min-height: 80vh; } }
 @media (max-width: 768px) { .hero-slide { min-height: 70vh; } }
 
-/* Slide 1 carries a SQUARE photo (images/spice.png, 1254x1254) on a wide ~1.9:1
-   slide. cover chopped ~42% off the top/bottom; contain fixed the height but
-   left big blurred bars either side. Height now reads right, so fill the
-   slide's length too: size the background to 100% 100%, i.e. edge to edge at
-   full slide height. The photo's aspect is stretched to the slide (accepted,
-   so nothing is cropped out and the frame is never empty). */
+/* ALL four hero slides carry the same SQUARE photo (images/spice.png,
+   1254x1254) — the other three slides' Gemini photos were replaced by it. On a
+   wide ~1.9:1 slide cover chops ~42% off the top/bottom; contain fixed the
+   height but left big blurred bars either side. Height now reads right, so
+   fill the slide's length too: size the background to 100% 100%, i.e. edge to
+   edge at full slide height. The photo's aspect is stretched to the slide
+   (accepted, so nothing is cropped out and the frame is never empty). */
 .hero-slide.spice-slide {
   background-color: #17130b;
   background-size: 100% 100%;
