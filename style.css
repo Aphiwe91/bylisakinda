@@ -1025,36 +1025,18 @@ header { position: relative; }
 @media (max-width: 991px) { .hero-slide { min-height: 80vh; } }
 @media (max-width: 768px) { .hero-slide { min-height: 70vh; } }
 
-/* Slide 1 carries a SQUARE photo (images/spice.png, 1254x1254). The slide is a
-   wide 16:9-ish band, so background-size: cover would chop ~42% off the top and
-   bottom of the picture. Show it whole instead: the slide's own background uses
-   contain (never crops), ::after repeats that sharp contained copy so the picture
-   sits above ::before, and ::before is a blurred + darkened cover copy of the
-   same photo that fills the letterbox sides so the frame never looks empty.
-   The dark scrim has to paint over ::after (a positioned pseudo, later in tree
-   order), hence z-index: 1 on the overlay — text stays at z-index: 2. */
+/* Slide 1 carries a SQUARE photo (images/spice.png, 1254x1254) on a wide ~1.9:1
+   slide. cover chopped ~42% off the top/bottom; contain fixed the height but
+   left big blurred bars either side. Height now reads right, so fill the
+   slide's length too: size the background to 100% 100%, i.e. edge to edge at
+   full slide height. The photo's aspect is stretched to the slide (accepted,
+   so nothing is cropped out and the frame is never empty). */
 .hero-slide.spice-slide {
   background-color: #17130b;
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
-.hero-slide.spice-slide::before {
-  content: "";
-  position: absolute;
-  inset: -40px; /* blur pulls from outside the slide; extra reach hides its soft edge */
-  background: url('images/spice.png') center / cover no-repeat;
-  filter: blur(28px) brightness(0.55);
-  z-index: 0;
-}
-.hero-slide.spice-slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('images/spice.png') center / contain no-repeat;
-  z-index: 0;
-}
-.hero-slide.spice-slide .hero-overlay { z-index: 1; }
 
 /* ===== Section titles: massive ===== */
 .section-title {
