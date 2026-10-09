@@ -1129,10 +1129,11 @@ footer a:hover { color: #fff; }
 
 /* ===== WhatsApp button text styling ===== */
 #floating-whatsapp, #floating-whatsapp *,
-#ob-whatsapp, #ob-whatsapp * {
+#ob-whatsapp, #ob-whatsapp *,
+#cart-checkout, #cart-checkout * {
   color: #fff !important;
 }
-#floating-whatsapp svg, #ob-whatsapp svg {
+#floating-whatsapp svg, #ob-whatsapp svg, #cart-checkout svg {
   color: #fff !important;
 }
 
@@ -1415,12 +1416,13 @@ h2.section-title,
     "Helvetica Neue", "Inter", system-ui, sans-serif;
 }
 
-/* ===== Trusted payment gateways =====
+/* ===== WhatsApp Business store marquee (was: trusted payment gateways) =====
    Sits directly below the white rule under the navbar. The bar carries the
    navbar's red-gold-green gradient as a light wash + a 2px brand hairline, so
    it bridges the white header and the dark hero instead of floating on white.
    Scrolls RIGHT — the opposite direction to the feature-tiles marquee
-   (translateX -50% -> 0, not 0 -> -50%). */
+   (translateX -50% -> 0, not 0 -> -50%), unchanged from the gateway badges.
+   The badges are now text chips explaining the WhatsApp business store. */
 .pay-strip {
   position: relative;
   background-color: #fff;
@@ -1471,7 +1473,7 @@ h2.section-title,
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  color: var(--brand-dark);
+  color: #25D366; /* WhatsApp green — matches the floating ORDER NOW button */
 }
 .pay-marquee {
   width: 100%;

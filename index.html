@@ -305,46 +305,35 @@
       </div>
     </header>
 
-    <!-- trusted payment gateways: sits directly below the white rule under the
-         navbar and scrolls right, opposite to the feature-tiles marquee -->
-    <div class="pay-strip" role="region" aria-label="Accepted payment methods">
+    <!-- WhatsApp Business store strip: same slot the payment-gateway badges
+         used to hold, still scrolls right (opposite to the feature-tiles
+         marquee) — now floating text explaining the WhatsApp business store -->
+    <div class="pay-strip" role="region" aria-label="WhatsApp Business store">
       <span class="pay-label">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="4" y="10.5" width="16" height="10.5" rx="2.5"></rect>
-          <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"></path>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-        We accept
+        WhatsApp store
       </span>
       <div class="pay-marquee">
         <div class="pay-track">
-          <span class="pay-badge"><img src="images/pay/visa.svg" alt="Visa"></span>
-          <span class="pay-badge"><img src="images/pay/mastercard.svg" alt="Mastercard"></span>
-          <span class="pay-badge"><img src="images/pay/maestro.svg" alt="Maestro"></span>
-          <span class="pay-badge"><img src="images/pay/amex.svg" alt="American Express"></span>
-          <span class="pay-badge"><img src="images/pay/diners.svg" alt="Diners Club"></span>
-          <span class="pay-badge"><img src="images/pay/jcb.svg" alt="JCB"></span>
-          <span class="pay-badge"><img src="images/pay/discover.svg" alt="Discover"></span>
-          <span class="pay-badge"><img src="images/pay/paypal.svg" alt="PayPal"></span>
-          <span class="pay-badge"><img class="pay-square" src="images/pay/applepay.svg" alt="Apple Pay"></span>
-          <span class="pay-badge"><img class="pay-square" src="images/pay/googlepay.svg" alt="Google Pay"></span>
-          <span class="pay-badge pay-name">PayFast</span>
-          <span class="pay-badge pay-name">SnapScan</span>
-          <span class="pay-badge pay-name">Zapper</span>
+          <span class="pay-badge pay-name">Chat, order &amp; pay in one place</span>
+          <span class="pay-badge pay-name">WhatsApp Business store — open 7 days a week</span>
+          <span class="pay-badge pay-name">Send your basket straight to our WhatsApp</span>
+          <span class="pay-badge pay-name">Bulk &amp; wholesale enquiries welcome</span>
+          <span class="pay-badge pay-name">Free doorstep delivery over R500</span>
+          <span class="pay-badge pay-name">Subscribe &amp; Save 12% on repeat orders</span>
+          <span class="pay-badge pay-name">Card, EFT &amp; SnapScan accepted in the chat</span>
+          <span class="pay-badge pay-name">Tap ORDER NOW to open the store</span>
 
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/visa.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/mastercard.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/maestro.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/amex.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/diners.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/jcb.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/discover.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img src="images/pay/paypal.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img class="pay-square" src="images/pay/applepay.svg" alt=""></span>
-          <span class="pay-badge" aria-hidden="true"><img class="pay-square" src="images/pay/googlepay.svg" alt=""></span>
-          <span class="pay-badge pay-name" aria-hidden="true">PayFast</span>
-          <span class="pay-badge pay-name" aria-hidden="true">SnapScan</span>
-          <span class="pay-badge pay-name" aria-hidden="true">Zapper</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Chat, order &amp; pay in one place</span>
+          <span class="pay-badge pay-name" aria-hidden="true">WhatsApp Business store — open 7 days a week</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Send your basket straight to our WhatsApp</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Bulk &amp; wholesale enquiries welcome</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Free doorstep delivery over R500</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Subscribe &amp; Save 12% on repeat orders</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Card, EFT &amp; SnapScan accepted in the chat</span>
+          <span class="pay-badge pay-name" aria-hidden="true">Tap ORDER NOW to open the store</span>
         </div>
       </div>
     </div>
@@ -618,6 +607,10 @@
             <strong id="cart-total">R0.00</strong>
           </div>
           <small class="text-body-secondary d-block mb-2" id="cart-delivery-note"></small>
+          <button class="btn btn-success w-100 mt-3 d-flex align-items-center justify-content-center gap-2" id="cart-checkout" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Order on WhatsApp
+          </button>
                       </div>
           </div>
         </div>
