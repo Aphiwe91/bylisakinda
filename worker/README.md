@@ -1,68 +1,64 @@
-# AP Global Organics — Yoco payment Worker
+# AP Global Organics — Yoco payment backend
 
-A tiny Cloudflare Worker that creates Yoco Checkout sessions for the storefront.
-It exists so the **Yoco secret key never reaches the browser**: the page posts the
-cart here, the Worker recomputes the total from `src/prices.json` and calls Yoco.
+The payment API runs **inside the same Cloudflare Worker that serves the website**
+(Worker `round-rain-b4e8`, configured by the `wrangler.toml` in the site root).
+The browser never sees the Yoco secret key: the storefront posts the cart to
+`/api/checkout`, this script recomputes the total from `src/prices.json` and then
+asks Yoco to create a Checkout session. The customer is redirected to Yoco's
+hosted page to pay.
 
-## What it does
+## Routes
 
 | Route | Purpose |
 |---|---|
-| `GET /api/health` | `{ ok, mode }` — confirms the Worker is up and whether it is in `test` or `live` mode |
+| `GET /api/health` | `{ ok, mode }` — confirms the API is up and whether it is in `test` or `live` mode |
 | `POST /api/checkout` | Validates the cart, recomputes the total, creates a Yoco checkout, returns `redirectUrl` |
 | `POST /api/yoco/webhook` | Verifies the Svix signature and logs payment events (fulfilment hook) |
+
+Only `/api/*` is handled by this script (`run_worker_first = ["/api/*"]` in the
+site `wrangler.toml`); every other path is served as a static asset, so the
+storefront is unaffected.
 
 Amounts are recomputed server-side from `src/prices.json`, so a tampered browser
 cart cannot change what the customer is charged.
 
-## Setup
+## Deploy
 
-1. **Install Wrangler** (Cloudflare's CLI):
+Run these from the **site root** (the folder containing `wrangler.toml`):
 
-   ```bash
-   cd worker
-   npm install
-   npx wrangler login          # opens a browser once
-   ```
+```bash
+# 1. Store the Yoco secret keys (never commit them).
+npx wrangler secret put YOCO_SECRET_KEY      # paste sk_test_...  (then sk_live_... when live)
+npx wrangler secret put YOCO_WEBHOOK_SECRET  # paste whsec_...    (optional, for webhooks)
 
-2. **Set the Yoco secret key** (never commit it):
+# 2. Ship it.
+npx wrangler deploy
+```
 
-   ```bash
-   # Scaffold with Yoco's public test key:
-   npx wrangler secret put YOCO_SECRET_KEY
-   #   paste: sk_test_<your test secret key>
+No DNS or route changes are needed: the Worker already owns the
+`aporganics.online` Custom Domain, so the API is served from the same origin at
+`https://aporganics.online/api/*`.
 
-   # Before going live, replace it with your live key:
-   npx wrangler secret put YOCO_SECRET_KEY
-   #   paste: sk_live_<your live secret key>
-   ```
+### Local testing
 
-3. **Register the webhook** (optional but recommended) so you can confirm
-   payments and fulfil orders:
+```bash
+npx wrangler dev        # from the site root; serves assets + /api on :8787
+```
 
-   ```bash
-   npx wrangler secret put YOCO_WEBHOOK_SECRET
-   #   paste the whsec_... value Yoco shows when you create the webhook
-   ```
+`js/pay.js` automatically targets `http://localhost:8787` on localhost and the
+same-origin `/api` everywhere else.
 
-   Then in the Yoco app (Sales → e-Commerce integrations → Checkout API →
-   Webhooks) point the webhook at
-   `https://aporganics.online/api/yoco/webhook`.
+## Register the webhook (optional but recommended)
 
-4. **Add the domain in Yoco.** In the Yoco app: Sales → e-Commerce integrations
-   → Checkout API → *How to connect* → **Verified domains** → add
-   `aporganics.online`. Live keys unlock once the domain is verified.
+In the Yoco app: Sales → e-Commerce integrations → Checkout API → Webhooks, point
+it at `https://aporganics.online/api/yoco/webhook`, then store the `whsec_...`
+value with `npx wrangler secret put YOCO_WEBHOOK_SECRET`.
 
-5. **Deploy:**
+## Add the domain in Yoco
 
-   ```bash
-   npx wrangler deploy
-   ```
-
-   Then route `aporganics.online/api/*` at the Worker (uncomment `[routes]` in
-   `wrangler.toml`, or add a DNS record in Cloudflare). For local testing use
-   `npx wrangler dev` — it prints a `http://localhost:8787` URL; set that as the
-   Worker URL in the storefront (see below).
+In the Yoco app: Sales → e-Commerce integrations → Checkout API → *How to
+connect* → **Verified domains** → add `aporganics.online`. Live keys unlock once
+the domain is verified.
 
 ## Configuration (`wrangler.toml` → `[vars]`)
 
@@ -77,11 +73,10 @@ cart cannot change what the customer is charged.
 `src/prices.json` is generated from the site's single source of truth:
 
 ```bash
-cd ..            # site root
-python3 tools/gen_prices.py
+python3 tools/gen_prices.py     # from the site root
 ```
 
-Re-run it whenever `js/products.js` prices change, then `wrangler deploy`.
+Re-run it whenever `js/products.js` prices change, then `npx wrangler deploy`.
 
 ## Test cards
 
