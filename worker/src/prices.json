@@ -1,0 +1,118 @@
+{
+  "products": {
+    "Ashwagandha Powder (Indian Ginseng)": {
+      "p80": 30.0,
+      "p200": 75.0
+    },
+    "Butter Chicken Spice": {
+      "p80": 18.93,
+      "p200": 47.33
+    },
+    "Raj Curry Powder": {
+      "p80": 17.14,
+      "p200": 42.84
+    },
+    "Barbeque Spice": {
+      "p80": 9.11,
+      "p200": 22.78
+    },
+    "Basil": {
+      "p80": 15.37,
+      "p200": 38.42
+    },
+    "Bay Leaves": {
+      "p80": 27.74,
+      "p200": 69.36
+    },
+    "Crushed Chilli": {
+      "p80": 12.65,
+      "p200": 31.62
+    },
+    "Birds Eye Chili Powder": {
+      "p80": 25.95,
+      "p200": 64.87
+    },
+    "Cassava Flour": {
+      "p80": 5.71,
+      "p200": 14.28
+    },
+    "Chickpeas / Whole Chana": {
+      "p80": 6.8,
+      "p200": 17.0
+    },
+    "Coarse Himalayan Pink Salt": {
+      "p80": 9.44,
+      "p200": 23.6
+    },
+    "Dried Parsley": {
+      "p80": 14.55,
+      "p200": 36.38
+    },
+    "Fine Black Pepper": {
+      "p80": 30.0,
+      "p200": 75.0
+    },
+    "Fine Cinnamon": {
+      "p80": 20.0,
+      "p200": 50.0
+    },
+    "Fine Ginger": {
+      "p80": 25.0,
+      "p200": 62.5
+    },
+    "Fine Jeera (Cumin)": {
+      "p80": 20.0,
+      "p200": 50.0
+    },
+    "Cayenne Pepper Powder": {
+      "p80": 15.0,
+      "p200": 37.5
+    },
+    "Ground Cloves": {
+      "p80": 35.0,
+      "p200": 87.5
+    },
+    "Italian Herbs": {
+      "p80": 29.92,
+      "p200": 74.8
+    },
+    "Kowdi Lubaan (Frank Incense)": {
+      "p80": 19.86,
+      "p200": 49.64
+    },
+    "Moringa Powder": {
+      "p80": 25.0,
+      "p200": 62.5
+    },
+    "Paprika": {
+      "p80": 15.0,
+      "p200": 37.5
+    },
+    "Oregano": {
+      "p80": 15.37,
+      "p200": 38.42
+    },
+    "Cajun Spice": {
+      "p80": 10.12,
+      "p200": 25.3
+    },
+    "Garlic Powder": {
+      "p80": 20.0,
+      "p200": 50.0
+    },
+    "Thyme": {
+      "p80": 17.82,
+      "p200": 44.54
+    },
+    "Turmeric Powder": {
+      "p80": 15.0,
+      "p200": 37.5
+    }
+  },
+  "bundles": {
+    "Daily Wellness Ritual Kit": 129.0,
+    "Braai Master Trio": 199.0,
+    "Cape Spice Route Box": 399.0
+  },
+  "_source": "js/products.js"
+}

@@ -102,7 +102,16 @@
     if (total >= FREE_DELIVERY) note.textContent = "Free doorstep delivery unlocked — anywhere in South Africa.";
     else if (total > 0) note.textContent = "Add " + money(FREE_DELIVERY - total) + " more for free doorstep delivery (over R500).";
     else note.textContent = "";
+
+    var bar = document.getElementById("cart-progress");
+    if (bar) {
+      bar.style.width = Math.min(100, (total / FREE_DELIVERY) * 100) + "%";
+      if (bar.parentElement) bar.parentElement.classList.toggle("is-complete", total >= FREE_DELIVERY && total > 0);
+    }
   }
+
+  // pay.js clears the cart after a successful Yoco payment
+  window.addEventListener("ago:cart-cleared", function () { cart = []; saveCart(); });
 
   document.getElementById("cart-items").addEventListener("click", function (e) {
     var btn = e.target.closest(".cart-remove");
