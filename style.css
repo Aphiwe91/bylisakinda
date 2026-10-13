@@ -984,7 +984,7 @@ header { position: relative; }
 .hero-carousel { width: 100%; }
 .hero-slide {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1025,8 +1025,9 @@ header { position: relative; }
 @media (max-width: 991px) { .hero-slide { min-height: 80vh; } }
 @media (max-width: 768px) { .hero-slide { min-height: 70vh; } }
 
-/* ALL four hero slides carry the same SQUARE photo (images/spice.png,
-   1254x1254) — the other three slides' Gemini photos were replaced by it. On a
+/* ALL four hero slides carry the same SQUARE photo (images/hero-spice.jpg,
+   1254x1254, ~377 KB — compressed from the original 3.1 MB PNG) — the other
+   three slides' Gemini photos were replaced by it. On a
    wide ~1.9:1 slide cover chops ~42% off the top/bottom; contain fixed the
    height but left big blurred bars either side. Height now reads right, so
    fill the slide's length too: size the background to 100% 100%, i.e. edge to
@@ -1658,12 +1659,12 @@ img {
 /* Keep the typewriter card inside the band ABOVE the sticky ORDER NOW pill.
    The pill is 144px tall, pinned 24px off the bottom and bounces up to
    39px higher (scale 1.15 + translateY(-28px)); the hero starts at 152px.
-   Centring a 100vh slide's content in [hero top, pill's bounced top] works
-   out to a constant 360px of bottom padding at any window height
-   (a 80vh slide below 992px is the same formula minus 20vh). */
+   Centring an H-vh slide's content in [hero top, pill's bounced top] needs a
+   bottom padding of 360px - (100vh - H) at any window height: 360px for the
+   original 100vh slide, and 360px - 20vh now that the slide is 80vh. */
 @media (min-width: 992px) {
   .hero-slide {
-    padding-bottom: 360px;
+    padding-bottom: calc(360px - 20vh);
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
