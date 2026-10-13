@@ -211,8 +211,6 @@ a { text-decoration: none; }
 }
 
 /* ---------------------------------------------------------------- cart + checkout */
-.ago-checkout { background: linear-gradient(180deg, transparent, rgba(239, 233, 220, 0.55)); }
-
 .ago-panel {
   background: #fff;
   border: 1px solid var(--ago-line);
@@ -384,6 +382,100 @@ footer a:hover { color: var(--ago-leaf); }
 /* ---------------------------------------------------------------- forms (page-wide) */
 .form-control { border-radius: var(--ago-radius-sm); }
 .form-control:focus { border-color: var(--ago-leaf); box-shadow: var(--ago-ring); }
+
+/* ---------------------------------------------------------------- cart in the navbar */
+/* The cart icon sits at the end of the social handles. Hovering, tabbing
+   onto it or tapping it drops the whole cart + card checkout straight
+   from the navbar, so checkout is always one gesture away. */
+.nav-cart { position: relative; }
+.nav-cart-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: var(--ago-radius-pill);
+  cursor: pointer;
+  opacity: .95;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.nav-cart-btn:hover,
+.nav-cart-btn:focus-visible { opacity: 1; transform: translateY(-1px); }
+.nav-cart-count {
+  position: absolute;
+  top: 1px;
+  right: -1px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+  font-size: .66rem;
+  font-weight: 700;
+  line-height: 17px;
+  color: #fff;
+  background: #1c1c1c;
+  border: 2px solid rgba(255, 255, 255, .9);
+}
+.nav-cart-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: -6px;
+  width: 380px;
+  max-width: calc(100vw - 24px);
+  max-height: min(74vh, 660px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  color: var(--ago-ink);
+  border: 1px solid var(--ago-line);
+  border-radius: var(--ago-radius);
+  box-shadow: var(--ago-shadow-lg);
+  padding: 18px;
+  z-index: 3000;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+/* open on hover, on keyboard focus, or when pinned open by a tap */
+.nav-cart:hover .nav-cart-panel,
+.nav-cart:focus-within .nav-cart-panel,
+.nav-cart.panel-open .nav-cart-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.nav-cart-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.nav-cart-panel .ago-row { margin-top: 2px; }
+.nav-cart-panel .ago-sub { margin-bottom: 14px; }
+.nav-cart-panel .ago-or { margin: 16px 0; }
+.nav-cart-panel .ago-secure { margin-bottom: 0; }
+
+/* small screens: the navbar cluster is narrow, so the panel becomes a
+   sheet from the bottom instead of a drop-down that could spill sideways */
+@media (max-width: 767.98px) {
+  .nav-cart-panel {
+    position: fixed;
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    max-height: 62vh;
+  }
+}
 
 /* ---------------------------------------------------------------- responsive */
 @media (max-width: 767.98px) {

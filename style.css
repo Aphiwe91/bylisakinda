@@ -944,21 +944,12 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
    left of the search bar (it used to be hidden below lg). */
 header { position: relative; }
 @media (max-width: 575.98px) {
-  .nav-registration {
-    display: flex !important;
-    position: absolute;
-    top: 0;
-    right: 12px;
-    left: 140px;
-    height: 58px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1px;
-    padding: 0;
-  }
-  .nav-reg-name { font-size: 0.95rem; }
-  .nav-reg-numbers { font-size: 0.78rem; }
+  /* CK/Tax line: a single compact row in the flow (it used to be
+     absolutely positioned over the logo row, which collided with the
+     cart icon once the cart moved onto the top row) */
+  .nav-registration { gap: 0 0.5rem; padding: 0.1rem 0; }
+  .nav-reg-name { font-size: 0.8rem; }
+  .nav-reg-numbers { font-size: 0.68rem; }
 }
 @media (max-width: 575.98px) {
   .nav-logo { width: 40px; height: 40px; }
@@ -1548,18 +1539,14 @@ img {
     font-size: clamp(1.05rem, 2.2vw, 1.5rem);
   }
 }
-/* Below the desktop breakpoint the header stacks into 3-4 rows (toggler,
-   search, socials each on their own line) and eats the hero's breathing room.
-   The same social links live in the footer, so drop them here and tighten the
-   row padding — that hands ~65px back to the hero on phones. */
+/* Below the desktop breakpoint the header stacks into rows (logo + cart,
+   search, then the CK/Tax line) and eats the hero's breathing room. The
+   same social links live in the footer, so drop them here — that hands
+   space back to the hero on phones. The CK/Tax line stays put: the
+   business details belong on the navbar at every width. */
 @media (max-width: 991.98px) {
   .nav-social {
     display: none !important;
-  }
-  /* the CK/Tax line is a full-width block below lg and adds ~55px of header;
-     the same details now live in the footer-bottom for these screens */
-  .nav-registration {
-    display: none;
   }
 }
 @media (max-width: 575.98px) {

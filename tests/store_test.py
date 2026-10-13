@@ -99,6 +99,33 @@ check("add to cart updates badge", txt("cart-count") == "1")
 stored = driver.execute_script("return JSON.parse(localStorage.getItem('ago_cart') || '[]')")
 check("cart persisted to localStorage", len(stored) == 1 and stored[0]["name"] == first_name, stored)
 
+# 5b. the cart + card checkout now live in a dropdown off the navbar cart icon
+navcart = driver.execute_script("""
+  var wrap = document.querySelector('.nav-cart');
+  if (!wrap) return null;
+  var col = wrap.closest('div[class*="col-"]');
+  var social = col ? col.querySelector('.nav-social') : null;
+  var panel = document.getElementById('nav-cart-panel');
+  var before = getComputedStyle(panel).visibility;
+  wrap.classList.add('panel-open');
+  var after = getComputedStyle(panel).visibility;
+  wrap.classList.remove('panel-open');
+  return {inHeader: !!wrap.closest('header'),
+          withSocials: !!(social && social.parentElement === wrap.parentElement),
+          socialsIntact: !!(social && social.children.length === 4),
+          badgeInNav: !!wrap.querySelector('#cart-count'),
+          payInPanel: !!(panel.querySelector('#cart-pay') && panel.querySelector('#cart-checkout')),
+          hiddenByDefault: before === 'hidden',
+          opensWhenPinned: after === 'visible'};
+""")
+check("cart icon sits in the navbar beside the socials, cart + payment in its panel",
+      navcart and navcart["inHeader"] and navcart["withSocials"]
+      and navcart["socialsIntact"] and navcart["badgeInNav"]
+      and navcart["payInPanel"] and navcart["hiddenByDefault"]
+      and navcart["opensWhenPinned"], navcart)
+check("old full-width cart section is gone",
+      driver.execute_script("return document.querySelector('section#cart, .ago-checkout') === null"))
+
 # 6. quick view
 driver.find_element(By.CSS_SELECTOR, ".product-grid .product-item figure a").click()
 wait.until(EC.visibility_of_element_located((By.ID, "product-modal")))
@@ -158,6 +185,9 @@ check("scenario reset shows all", len(visible_names()) == 33, len(visible_names(
 # 9. delivery note appears at R500+ (20x ashwagandha 80g = R600.00)
 driver.execute_script("document.querySelector('.product-grid .quantity').value = 20;")
 driver.find_element(By.CSS_SELECTOR, ".product-grid .btn-cart").click()
+# the delivery note lives inside the navbar cart dropdown, which is hidden
+# until hover/focus/tap — pin it open so Selenium can read its text
+driver.execute_script("document.querySelector('.nav-cart').classList.add('panel-open')")
 note = driver.find_element(By.ID, "cart-delivery-note").text
 check("free-delivery note at R500+", "Free doorstep delivery unlocked" in note, note)
 

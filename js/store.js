@@ -428,6 +428,31 @@
     });
   }
 
+  // ---------- navbar cart dropdown ----------
+  // Hover or keyboard focus opens the panel on desktop; on touch there is
+  // no hover, so a tap pins it open. An outside tap or Escape closes it.
+  (function () {
+    var wrap = document.querySelector(".nav-cart");
+    var btn = document.querySelector(".nav-cart-btn");
+    if (!wrap || !btn) return;
+
+    function setOpen(open) {
+      wrap.classList.toggle("panel-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(!wrap.classList.contains("panel-open"));
+    });
+    document.addEventListener("click", function () { setOpen(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+    var cont = wrap.querySelector(".ago-link");
+    if (cont) cont.addEventListener("click", function () { setOpen(false); });
+  })();
+
   // ---------- init ----------
   renderCart();
   obRecalc();

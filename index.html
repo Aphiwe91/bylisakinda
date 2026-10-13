@@ -237,7 +237,7 @@
       <div class="container-fluid">
         <div class="row py-3 border-bottom">
           
-          <div class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
+          <div class="col-8 col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
               aria-controls="offcanvasNavbar">
               <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#menu"></use></svg>
@@ -247,7 +247,7 @@
             </a>
           </div>
           
-          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-4">
+          <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-4 order-2 order-sm-0">
             <div class="search-bar row bg-light p-2 rounded-4">
               <div class="col-md-4 d-none d-md-block">
                 <select id="category-filter" class="form-select border-0 bg-transparent">
@@ -270,14 +270,62 @@
             </div>
           </div>
 
-          <div class="col-lg-4">
+          <div class="col-sm-6 col-lg-4 order-3 order-sm-0">
             <div class="nav-registration">
               <span class="nav-reg-name">AP Organics (Pty) Ltd</span>
               <span class="nav-reg-numbers">CK No. 2026/482913/07 &nbsp;·&nbsp; Tax No. 9483726150</span>
             </div>
           </div>
           
-          <div class="col-sm-8 col-lg-2 d-flex gap-5 align-items-center justify-content-center justify-content-sm-end">
+          <div class="col-4 col-sm-6 col-lg-2 order-1 order-sm-0 d-flex gap-5 align-items-center justify-content-end">
+            <!-- Cart: the whole cart + card checkout drops down from this
+                 icon (hover / keyboard focus / tap). It sits beside the
+                 social handles so it reads as one navbar cluster. -->
+            <div class="nav-cart">
+              <button class="nav-cart-btn" type="button" aria-label="Cart"
+                aria-expanded="false" aria-controls="nav-cart-panel">
+                <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#cart"></use></svg>
+                <span class="nav-cart-count badge rounded-pill" id="cart-count">0</span>
+              </button>
+              <div class="nav-cart-panel" id="nav-cart-panel">
+                <div class="nav-cart-head">
+                  <h4 class="ago-panel__title mb-0">Your cart</h4>
+                  <a class="ago-link" href="#app">Continue shopping</a>
+                </div>
+                <div class="ago-result" id="pay-result" hidden></div>
+                <ul class="list-group ago-cart-list" id="cart-items">
+                  <li class="list-group-item" id="cart-empty">
+                    <div>
+                      <h6 class="my-0">Your cart is empty</h6>
+                      <small class="text-body-secondary">Add products from the shelves below</small>
+                    </div>
+                  </li>
+                </ul>
+                <div class="ago-progress" aria-hidden="true"><span id="cart-progress"></span></div>
+                <small class="ago-note" id="cart-delivery-note"></small>
+                <div class="ago-row"><span>Total (ZAR)</span><strong id="cart-total">R0.00</strong></div>
+                <p class="ago-sub">Prices include VAT. Delivery is confirmed with your order.</p>
+                <h6 class="ago-pay-heading">Pay securely by card</h6>
+                <div class="ago-fields">
+                  <input class="form-control ago-input" id="pay-email" type="email" autocomplete="email" placeholder="Email address (for your receipt)">
+                  <div class="row g-2">
+                    <div class="col-sm-6"><input class="form-control ago-input" id="pay-name" type="text" autocomplete="name" placeholder="Full name"></div>
+                    <div class="col-sm-6"><input class="form-control ago-input" id="pay-phone" type="tel" autocomplete="tel" placeholder="Cell number"></div>
+                  </div>
+                </div>
+                <button class="btn ago-pay-btn w-100" id="cart-pay" type="button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+                  Pay by card &mdash; Yoco
+                </button>
+                <div class="ago-trust"><span>Visa</span><span>Mastercard</span><span>Apple&nbsp;Pay</span><span>Google&nbsp;Pay</span></div>
+                <div class="ago-or"><span>or order on WhatsApp</span></div>
+                <button class="btn ago-wa-btn w-100 d-flex align-items-center justify-content-center gap-2" id="cart-checkout" type="button">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order on WhatsApp
+                </button>
+                <p class="ago-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-2V6a5 5 0 0 0-5-5Zm-3 5a3 3 0 1 1 6 0v3H9V6Z"/></svg> Secured by Yoco &middot; 3D Secure</p>
+              </div>
+            </div>
             <ul class="d-flex justify-content-end list-unstyled m-0 nav-social">
               <li>
                 <a href="https://www.facebook.com/APGlobalOrganics" class="p-2 mx-1" target="_blank" rel="noopener" aria-label="Facebook">
@@ -301,7 +349,6 @@
               </li>
             </ul>
           </div>
-
         </div>
       </div>
     </header>
@@ -552,64 +599,6 @@
       </div>
     </section>
 
-    <section class="py-5 ago-checkout" id="cart">
-      <div class="container-lg">
-        <div class="row justify-content-center g-4">
-
-          <!-- Cart items -->
-          <div class="col-lg-7">
-            <div class="ago-panel">
-              <div class="ago-panel__head">
-                <h4 class="ago-panel__title">Your cart <span class="ago-count badge rounded-pill" id="cart-count">0</span></h4>
-                <a class="ago-link" href="#app">Continue shopping</a>
-              </div>
-              <div class="ago-result" id="pay-result" hidden></div>
-              <ul class="list-group ago-cart-list" id="cart-items">
-                <li class="list-group-item" id="cart-empty">
-                  <div>
-                    <h6 class="my-0">Your cart is empty</h6>
-                    <small class="text-body-secondary">Add products from the shelves below</small>
-                  </div>
-                </li>
-              </ul>
-              <div class="ago-progress" aria-hidden="true"><span id="cart-progress"></span></div>
-              <small class="ago-note" id="cart-delivery-note"></small>
-            </div>
-          </div>
-
-          <!-- Summary + payment -->
-          <div class="col-lg-5">
-            <div class="ago-panel ago-panel--pay">
-              <h5 class="ago-panel__title">Order summary</h5>
-              <div class="ago-row"><span>Total (ZAR)</span><strong id="cart-total">R0.00</strong></div>
-              <p class="ago-sub">Prices include VAT. Delivery is confirmed with your order.</p>
-
-              <h6 class="ago-pay-heading">Pay securely by card</h6>
-              <div class="ago-fields">
-                <input class="form-control ago-input" id="pay-email" type="email" autocomplete="email" placeholder="Email address (for your receipt)">
-                <div class="row g-2">
-                  <div class="col-sm-6"><input class="form-control ago-input" id="pay-name" type="text" autocomplete="name" placeholder="Full name"></div>
-                  <div class="col-sm-6"><input class="form-control ago-input" id="pay-phone" type="tel" autocomplete="tel" placeholder="Cell number"></div>
-                </div>
-              </div>
-              <button class="btn ago-pay-btn w-100" id="cart-pay" type="button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
-                Pay by card — Yoco
-              </button>
-              <div class="ago-trust"><span>Visa</span><span>Mastercard</span><span>Apple&nbsp;Pay</span><span>Google&nbsp;Pay</span></div>
-
-              <div class="ago-or"><span>or order on WhatsApp</span></div>
-              <button class="btn ago-wa-btn w-100 d-flex align-items-center justify-content-center gap-2" id="cart-checkout" type="button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Order on WhatsApp
-              </button>
-              <p class="ago-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-2V6a5 5 0 0 0-5-5Zm-3 5a3 3 0 1 1 6 0v3H9V6Z"/></svg> Secured by Yoco &middot; 3D Secure</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
 <section class="pb-5">
       <div class="container-lg">
 
@@ -2385,7 +2374,6 @@
         <div class="row">
           <div class="col-md-6 copyright">
             <p>© 2026 AP Global Organics. All rights reserved.</p>
-            <p class="mb-0 small text-muted d-lg-none">AP Organics (Pty) Ltd &middot; CK No. 2026/482913/07 &middot; Tax No. 9483726150</p>
             <p class="mb-0 small text-muted">Product photos: Wikimedia Commons contributors</p>
           </div>
           <div class="col-md-6 credit-link text-start text-md-end">
