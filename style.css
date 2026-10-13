@@ -599,7 +599,6 @@ a.btn-link.text-light:after {
   background-size: cover;
   background-position: center center;
   background-color: #f2ece4;
-  aspect-ratio: 1536 / 688;
   width: 100%;
   position: relative;
   display: flex;
@@ -1646,16 +1645,12 @@ img {
   }
 }
 
-/* ===== Hero: stop the template's aspect-ratio band clipping the slider =====
-   .hero-banner keeps `aspect-ratio: 1536/688` from the original theme, so it
-   was 168px tall on a 375px phone while the slides are 70vh (491px) — only
-   36px of the headline survived. Above 1140px the band is taller than the
-   text, so nothing changes for wide screens. */
-@media (max-width: 1140px) {
-  .hero-banner {
-    aspect-ratio: auto;
-  }
-}
+/* ===== Hero: the template's aspect-ratio band is gone =====
+   .hero-banner used to keep `aspect-ratio: 1536/688` from the original theme.
+   With the carousel slides at 80vh/70vh that ratio no longer matched: on wide
+   screens the band was 104px taller than the slide (a strip of empty banner
+   under the photo), and on narrow ones it clipped the bottom of the slide.
+   The banner now simply hugs the slide. */
 /* Keep the typewriter card inside the band ABOVE the sticky ORDER NOW pill.
    The pill is 144px tall, pinned 24px off the bottom and bounces up to
    39px higher (scale 1.15 + translateY(-28px)); the hero starts at 152px.
