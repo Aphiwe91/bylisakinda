@@ -209,7 +209,6 @@ a { text-decoration: none; }
   overflow: hidden;
   box-shadow: var(--ago-shadow-sm);
 }
-.pay-strip { background: #fff; }
 
 /* ---------------------------------------------------------------- cart + checkout */
 .ago-checkout { background: linear-gradient(180deg, transparent, rgba(239, 233, 220, 0.55)); }

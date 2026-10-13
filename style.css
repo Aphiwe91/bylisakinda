@@ -1417,154 +1417,6 @@ h2.section-title,
     "Helvetica Neue", "Inter", system-ui, sans-serif;
 }
 
-/* ===== WhatsApp Business store marquee (was: trusted payment gateways) =====
-   Sits directly below the white rule under the navbar. The bar carries the
-   navbar's red-gold-green gradient as a light wash + a 2px brand hairline, so
-   it bridges the white header and the dark hero instead of floating on white.
-   Scrolls RIGHT — the opposite direction to the feature-tiles marquee
-   (translateX -50% -> 0, not 0 -> -50%), unchanged from the gateway badges.
-   The badges are now text chips explaining the WhatsApp business store. */
-.pay-strip {
-  position: relative;
-  background-color: #fff;
-  background-image: linear-gradient(90deg,
-    rgba(198, 40, 40, 0.09),
-    rgba(224, 164, 0, 0.12),
-    rgba(46, 125, 50, 0.09));
-  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
-  padding: 11px 0;
-  overflow: hidden;
-}
-.pay-strip::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #C62828 0%, #E0A400 50%, #2E7D32 100%);
-  opacity: 0.6;
-}
-/* static trust tag: a solid pill the badges slide out from behind */
-.pay-label {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  height: 44px;
-  padding: 0 16px 0 13px;
-  background: rgba(255, 255, 255, 0.97);
-  border: 1px solid rgba(17, 17, 17, 0.07);
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(17, 17, 17, 0.06),
-              0 0 0 7px rgba(255, 255, 255, 0.55);
-  color: var(--ink);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-}
-.pay-label svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  color: #25D366; /* WhatsApp green — matches the floating ORDER NOW button */
-}
-.pay-marquee {
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-}
-.pay-track {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  animation: pay-scroll 45s linear infinite;
-}
-.pay-marquee:hover .pay-track {
-  animation-play-state: paused;
-}
-.pay-track > * {
-  flex-shrink: 0;
-  margin-right: 14px;
-}
-.pay-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  min-width: 70px;
-  padding: 0 18px;
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(17, 17, 17, 0.07);
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(17, 17, 17, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-.pay-badge:hover {
-  transform: translateY(-3px);
-  border-color: rgba(107, 178, 82, 0.55);
-  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.14);
-}
-.pay-badge img {
-  height: 24px;
-  width: auto;
-  display: block;
-}
-.pay-badge img.pay-square {
-  height: 28px;
-}
-/* SA wallets have no free logo — brand-tinted name chips with a brand dot */
-.pay-badge.pay-name {
-  gap: 8px;
-  font-weight: 800;
-  font-size: 0.95rem;
-  letter-spacing: 0.01em;
-  color: var(--ink);
-}
-.pay-badge.pay-name::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 0 3px rgba(107, 178, 82, 0.18);
-}
-@keyframes pay-scroll {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
-}
-@media (max-width: 575.98px) {
-  .pay-strip { padding: 9px 0; }
-  .pay-label {
-    left: 8px;
-    height: 38px;
-    font-size: 0.62rem;
-    letter-spacing: 0.11em;
-    padding: 0 13px 0 10px;
-    gap: 6px;
-    box-shadow: 0 2px 6px rgba(17, 17, 17, 0.06),
-                0 0 0 5px rgba(255, 255, 255, 0.55);
-  }
-  .pay-label svg { width: 12px; height: 12px; }
-  .pay-badge { height: 38px; min-width: 60px; padding: 0 13px; }
-  .pay-badge img { height: 20px; }
-  .pay-badge img.pay-square { height: 24px; }
-  .pay-badge.pay-name { font-size: 0.85rem; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .pay-track { animation: none; }
-}
-
 /* ===== Images: never wider than their column =====
    .row > .col* is a flex item with min-width:auto, so an unconstrained photo
    (blog cards ship at 1100-1200px) inflates the column itself and drags the
@@ -1653,18 +1505,19 @@ img {
    The banner now simply hugs the slide. */
 /* Keep the typewriter card inside the band ABOVE the sticky ORDER NOW pill.
    The pill is 144px tall, pinned 24px off the bottom and bounces up to
-   39px higher (scale 1.15 + translateY(-28px)); the hero starts at 152px.
-   Centring an H-vh slide's content in [hero top, pill's bounced top] needs a
-   bottom padding of 360px - (100vh - H) at any window height: 360px for the
-   original 100vh slide, and 360px - 20vh now that the slide is 80vh. */
+   39px higher (scale 1.15 + translateY(-28px)). The hero starts at ~87px
+   (the WhatsApp strip that used to push it down to 152px is gone). Centring an
+   H-vh slide's content in [hero top, pill's bounced top] needs a bottom padding
+   of 294px - (100vh - H): 294px for a 100vh slide, 294px - 20vh now that the
+   slide is 80vh. */
 @media (min-width: 992px) {
   .hero-slide {
-    padding-bottom: calc(360px - 20vh);
+    padding-bottom: calc(294px - 20vh);
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
   .hero-slide {
-    padding-bottom: calc(360px - 20vh);
+    padding-bottom: calc(294px - 20vh);
   }
 }
 /* Short windows (<= ~780px of viewport height, i.e. every common laptop):
