@@ -1,0 +1,28 @@
+# Files that are NOT part of the published website (Workers Static Assets).
+#
+# NOTE: wrangler only auto-ignores .assetsignore, _redirects, _headers and the
+# wrangler config file itself. It does NOT skip .git/, node_modules/ or
+# .gitignore, so those must be listed explicitly here.
+
+# git metadata & dependencies
+.git
+.gitignore
+node_modules
+.wrangler
+
+# editor / tooling
+.vscode
+AGENTS.md
+
+# nested projects & non-site folders
+landing
+worker
+tests
+tools
+
+# hosting config for other platforms (GitHub Pages / nginx / Docker)
+Dockerfile
+nginx.conf
+readme.txt
+CNAME
+.nojekyll

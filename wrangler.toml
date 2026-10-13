@@ -1,0 +1,17 @@
+# Deploy config for the aporganics.online website.
+#
+# The site is hosted as a Cloudflare Worker using Workers Static Assets.
+# The Worker name below MUST match the existing Worker that the
+# aporganics.online Custom Domain is attached to, otherwise this would create
+# a brand-new Worker and the live domain would keep serving the old one.
+name = "round-rain-b4e8"
+compatibility_date = "2026-10-13"
+
+# Serve the files in this folder directly as static assets.
+# Files listed in .assetsignore are skipped (worker/, tests/, tools/, landing/ ...).
+[assets]
+directory = "."
+
+# NOTE: do NOT add a [routes] block here. The aporganics.online Custom Domain
+# is attached to this Worker in the Cloudflare dashboard and is preserved across
+# deploys; adding a conflicting route can break it.
