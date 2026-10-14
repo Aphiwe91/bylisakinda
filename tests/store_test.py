@@ -205,11 +205,13 @@ hero = driver.execute_script("""
   var s = document.querySelector('.hero-carousel');
   return s.swiper ? {slides: s.querySelectorAll('.swiper-slide').length,
                      autoplay: !!(s.swiper.autoplay && s.swiper.autoplay.running),
+                     delay: s.swiper.params.autoplay ? s.swiper.params.autoplay.delay : null,
                      bullets: document.querySelectorAll('.hero-carousel .swiper-pagination-bullet').length}
                   : null;
 """)
-check("hero carousel live (4 slides, autoplay, 4 bullets)",
-      hero and hero["slides"] == 4 and hero["autoplay"] and hero["bullets"] == 4, hero)
+check("hero carousel live (6 slides, 3s autoplay, 6 bullets)",
+      hero and hero["slides"] == 6 and hero["autoplay"]
+      and hero["delay"] == 3000 and hero["bullets"] == 6, hero)
 
 # 10c. brand imagery — header emblem + Whole Spices & Seeds category thumb
 logo = driver.execute_script("""

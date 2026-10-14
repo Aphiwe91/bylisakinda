@@ -31,23 +31,9 @@
       },
     });
 
-    var hero_swiper = new Swiper(".hero-carousel", {
-      speed: 1200,
-      loop: true,
-      autoplay: {
-        delay: 9000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-
+    // the hero carousel is initialised in js/store.js (scoped
+    // selectors, 3s autoplay) — do not duplicate it here, a second
+    // Swiper on the same element would take over and reset the delay
     var category_swiper = new Swiper(".category-carousel", {
       slidesPerView: 8,
       spaceBetween: 30,

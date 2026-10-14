@@ -19,6 +19,7 @@ landing
 worker
 tests
 tools
+gpt
 
 # hosting config for other platforms (GitHub Pages / nginx / Docker)
 Dockerfile

@@ -1,4 +1,6 @@
 landing/
+# raw AI-generated hero sources (converted JPEGs live in images/)
+gpt/
 .vscode/
 
 # Cloudflare Worker / wrangler (Yoco payment backend lives in worker/src/)

@@ -419,7 +419,7 @@
     new Swiper(".hero-carousel", {
       loop: true,
       speed: 1200,
-      autoplay: { delay: 9000, disableOnInteraction: false },
+      autoplay: { delay: 3000, disableOnInteraction: false },
       pagination: { el: ".hero-carousel .swiper-pagination", clickable: true },
       navigation: {
         nextEl: ".hero-carousel .swiper-button-next",
