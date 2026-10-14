@@ -238,8 +238,8 @@ logo = driver.execute_script("""
   return {loaded: i.complete && i.naturalWidth > 0, w: Math.round(b.width), h: Math.round(b.height),
           gap: Math.round(Math.abs((b.y + b.height/2) - (s.y + s.height/2)))};
 """)
-check("nav emblem loaded, 56px, level with the search bar",
-      logo and logo["loaded"] and logo["w"] == 56 and logo["h"] == 56 and logo["gap"] <= 1, logo)
+check("nav emblem loaded, 64px, level with the search bar",
+      logo and logo["loaded"] and logo["w"] == 64 and logo["h"] == 64 and logo["gap"] <= 1, logo)
 
 # 10d. navbar: bigger cart icon + emblem, sticky, glass on scroll
 nav = driver.execute_script("""
@@ -252,9 +252,9 @@ nav = driver.execute_script("""
           logoH: Math.round(lg.getBoundingClientRect().height),
           sticky: getComputedStyle(header).position};
 """)
-check("navbar: 52px cart icon, 56px emblem, sticky header",
-      nav and nav["cartW"] == 52 and nav["cartH"] == 52
-      and nav["logoW"] == 56 and nav["logoH"] == 56
+check("navbar: 60px cart icon, 64px emblem, sticky header",
+      nav and nav["cartW"] == 60 and nav["cartH"] == 60
+      and nav["logoW"] == 64 and nav["logoH"] == 64
       and nav["sticky"] == "sticky", nav)
 driver.execute_script("window.scrollTo(0, 700)")
 time.sleep(0.3)
