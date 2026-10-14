@@ -919,7 +919,7 @@ header { position: relative; }
 .hero-carousel { width: 100%; }
 .hero-slide {
   position: relative;
-  min-height: 90vh;
+  min-height: 80vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -957,12 +957,12 @@ header { position: relative; }
 .hero-carousel .swiper-pagination-bullet-active { background: var(--brand); }
 .hero-carousel .swiper-button-next,
 .hero-carousel .swiper-button-prev { color: #fff; --swiper-navigation-size: 20px; opacity: 0.5; }
-@media (max-width: 991px) { .hero-slide { min-height: 90vh; } }
-@media (max-width: 768px) { .hero-slide { min-height: 90vh; } }
+@media (max-width: 991px) { .hero-slide { min-height: 80vh; } }
+@media (max-width: 768px) { .hero-slide { min-height: 80vh; } }
 
 /* The six hero slides each carry their own photo (hero-spice.jpg plus the
    five images/hero-gpt-*.jpg). The slide fills the whole viewport
-   (min-height: 90vh above) and cover fills it edge to edge, cropping
+   (min-height: 80vh above) and cover fills it edge to edge, cropping
    rather than stretching so every photo keeps its aspect ratio. */
 .hero-slide.spice-slide {
   background-color: #17130b;
