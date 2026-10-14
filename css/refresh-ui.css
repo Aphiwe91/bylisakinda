@@ -394,8 +394,8 @@ footer a:hover { color: var(--ago-leaf); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 68px;
-  height: 68px;
+  width: 76px;
+  height: 76px;
   padding: 0;
   color: #fff;
   background: transparent;
@@ -411,12 +411,12 @@ footer a:hover { color: var(--ago-leaf); }
   position: absolute;
   top: 0;
   right: -2px;
-  min-width: 28px;
-  height: 28px;
+  min-width: 30px;
+  height: 30px;
   padding: 0 4px;
-  font-size: .78rem;
+  font-size: .8rem;
   font-weight: 700;
-  line-height: 26px;
+  line-height: 28px;
   color: #fff;
   background: #1c1c1c;
   border: 2px solid rgba(255, 255, 255, .9);

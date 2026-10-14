@@ -881,8 +881,8 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
 }
 .nav-logo {
   display: block;
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
@@ -912,7 +912,7 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
 }
 
 @media (max-width: 575.98px) {
-  .nav-logo { width: 56px; height: 56px; }
+  .nav-logo { width: 60px; height: 60px; }
 }
 
 /* social handles on the navbar */
