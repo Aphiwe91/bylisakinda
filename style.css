@@ -838,11 +838,13 @@ html { scroll-behavior: smooth; }
   --ink: #111;
   --paper: #fff;
 }
-body { background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif; }
 
 /* ===== Navbar: dark red → gold → green gradient, tuned to blend with the UI ===== */
 header {
   position: sticky;
+  padding-left: 0;
+  padding-right: 0;
   top: 0;
   z-index: 1020;
   background: linear-gradient(90deg, #C62828 0%, #E0A400 50%, #2E7D32 100%);
@@ -913,14 +915,50 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
 
 @media (max-width: 575.98px) {
   .nav-logo { width: 60px; height: 60px; }
+  /* nav-social: flush to the header's right edge (which spans viewport) */
+  .nav-social {
+    position: absolute;
+    right: -15px;  /* compensate for container-fluid padding */
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    z-index: 10;  /* above the row */
+  }
+  .nav-social li {
+    margin-right: 0;
+  }
+  .nav-social a {
+    padding: 0.35rem 0.5rem;
+  }
+  /* Make the header the positioning context */
+  header {
+    position: relative;
+  }
+  /* Make room in the row so it doesn't overlap */
+  header .row.py-3.border-bottom {
+    padding-right: 120px;
+  }
 }
 
 /* social handles on the navbar */
 .nav-social a {
   color: #fff;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   opacity: 0.95;
   transition: transform .15s ease, opacity .15s ease;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+.nav-social a:hover,
+.nav-social a:focus-visible {
+  color: #fff;
+  opacity: 1;
+  transform: translateY(-2px) scale(1.08);
+  background: rgba(255, 255, 255, 0.2);
 }
 .nav-social a:hover,
 .nav-social a:focus-visible {
@@ -1500,9 +1538,7 @@ img {
    live in the footer, so drop them here — that hands space back to
    the hero on phones. */
 @media (max-width: 991.98px) {
-  .nav-social {
-    display: none !important;
-  }
+  /* nav-social kept visible: user wants social icons on the right */
 }
 @media (max-width: 575.98px) {
   header > .container-fluid > .row.py-3 {
