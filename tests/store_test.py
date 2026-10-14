@@ -203,15 +203,22 @@ check("add-to-cart button always visible", btn_visible)
 # 10b. hero carousel initialised (autoplay + pagination)
 hero = driver.execute_script("""
   var s = document.querySelector('.hero-carousel');
-  return s.swiper ? {slides: s.querySelectorAll('.swiper-slide').length,
+  if (!s.swiper) return null;
+  var cs = getComputedStyle(document.querySelector('.hero-slide'));
+  return {slides: s.querySelectorAll('.swiper-slide').length,
                      autoplay: !!(s.swiper.autoplay && s.swiper.autoplay.running),
                      delay: s.swiper.params.autoplay ? s.swiper.params.autoplay.delay : null,
-                     bullets: document.querySelectorAll('.hero-carousel .swiper-pagination-bullet').length}
-                  : null;
+                     bullets: document.querySelectorAll('.hero-carousel .swiper-pagination-bullet').length,
+          bgSize: cs.backgroundSize,
+          slideMinHeightPx: parseInt(cs.minHeight, 10),
+          viewportH: window.innerHeight};
 """)
-check("hero carousel live (6 slides, 3s autoplay, 6 bullets)",
+check("hero carousel live (6 slides, 5s autoplay, 6 bullets)",
       hero and hero["slides"] == 6 and hero["autoplay"]
-      and hero["delay"] == 3000 and hero["bullets"] == 6, hero)
+      and hero["delay"] == 5000 and hero["bullets"] == 6, hero)
+check("hero slide fills the viewport (cover, 100vh)",
+      hero and hero["bgSize"] == "cover"
+      and hero["slideMinHeightPx"] >= hero["viewportH"] * 0.99, hero)
 
 # 10c. brand imagery — header emblem + Whole Spices & Seeds category thumb
 logo = driver.execute_script("""
