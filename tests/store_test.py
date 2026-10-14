@@ -263,6 +263,16 @@ scrolled = driver.execute_script(
 driver.execute_script("window.scrollTo(0, 0)")
 check("navbar turns translucent when scrolling", scrolled is True, scrolled)
 
+# Social icon size
+social = driver.execute_script("""
+  var btn = document.querySelector('.nav-social a');
+  return btn ? {w: Math.round(btn.getBoundingClientRect().width),
+                h: Math.round(btn.getBoundingClientRect().height)} : null;
+""")
+check("navbar social icons 52px",
+      social and social["w"] == 52 and social["h"] == 52, social)
+
+
 thumbs = driver.execute_script("""
   return [['Whole Spices & Seeds', 'images/category/images.png'],
           ['Adaptogens', 'images/category/adoptegens.png'],

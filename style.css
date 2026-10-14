@@ -946,8 +946,8 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   opacity: 0.95;
   transition: transform .15s ease, opacity .15s ease;
   border-radius: 50%;
