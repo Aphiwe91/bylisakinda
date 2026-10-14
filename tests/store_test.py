@@ -186,9 +186,11 @@ check("scenario reset shows all", len(visible_names()) == 33, len(visible_names(
 driver.execute_script("document.querySelector('.product-grid .quantity').value = 20;")
 driver.find_element(By.CSS_SELECTOR, ".product-grid .btn-cart").click()
 # the delivery note lives inside the navbar cart dropdown, which is hidden
-# until hover/focus/tap — pin it open so Selenium can read its text
+# until hover/focus/tap — pin it open. Read textContent rather than
+# Selenium's .text: .text returns "" during the panel's 180ms opacity
+# fade-in, which races the WebDriver round-trip.
 driver.execute_script("document.querySelector('.nav-cart').classList.add('panel-open')")
-note = driver.find_element(By.ID, "cart-delivery-note").text
+note = txt("cart-delivery-note")
 check("free-delivery note at R500+", "Free doorstep delivery unlocked" in note, note)
 
 # 10. add-to-cart area always visible (touch-friendly)
