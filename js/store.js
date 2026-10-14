@@ -426,6 +426,20 @@
         prevEl: ".hero-carousel .swiper-button-prev",
       },
     });
+
+    // Fit the hero to the screen: the header sits above it, so the
+    // slide fills exactly the viewport height that is left. Computed
+    // (not a vh guess) so it is right at every breakpoint, and
+    // recomputed on resize because mobile browsers change the
+    // viewport height as the URL bar hides and shows.
+    var heroHeader = document.querySelector("header");
+    function fitHeroToScreen() {
+      document.documentElement.style.setProperty(
+        "--hero-fit",
+        Math.max(window.innerHeight - heroHeader.offsetHeight, 320) + "px");
+    }
+    fitHeroToScreen();
+    window.addEventListener("resize", fitHeroToScreen);
   }
 
   // ---------- navbar cart dropdown ----------

@@ -211,14 +211,15 @@ hero = driver.execute_script("""
                      bullets: document.querySelectorAll('.hero-carousel .swiper-pagination-bullet').length,
           bgSize: cs.backgroundSize,
           slideMinHeightPx: parseInt(cs.minHeight, 10),
+          headerPx: Math.round(document.querySelector('header').getBoundingClientRect().height),
           viewportH: window.innerHeight};
 """)
 check("hero carousel live (6 slides, 5s autoplay, 6 bullets)",
       hero and hero["slides"] == 6 and hero["autoplay"]
       and hero["delay"] == 5000 and hero["bullets"] == 6, hero)
-check("hero slide fills the viewport (cover, 85vh)",
+check("hero fits the screen (header + slide = viewport, cover)",
       hero and hero["bgSize"] == "cover"
-      and hero["slideMinHeightPx"] >= hero["viewportH"] * 0.84, hero)
+      and abs(hero["headerPx"] + hero["slideMinHeightPx"] - hero["viewportH"]) <= 2, hero)
 
 # 10c. brand imagery — header emblem + Whole Spices & Seeds category thumb
 logo = driver.execute_script("""
