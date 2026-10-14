@@ -216,9 +216,9 @@ hero = driver.execute_script("""
 check("hero carousel live (6 slides, 5s autoplay, 6 bullets)",
       hero and hero["slides"] == 6 and hero["autoplay"]
       and hero["delay"] == 5000 and hero["bullets"] == 6, hero)
-check("hero slide fills the viewport (cover, 80vh)",
+check("hero slide fills the viewport (cover, 85vh)",
       hero and hero["bgSize"] == "cover"
-      and hero["slideMinHeightPx"] >= hero["viewportH"] * 0.79, hero)
+      and hero["slideMinHeightPx"] >= hero["viewportH"] * 0.84, hero)
 
 # 10c. brand imagery — header emblem + Whole Spices & Seeds category thumb
 logo = driver.execute_script("""
