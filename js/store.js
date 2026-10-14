@@ -442,6 +442,17 @@
     window.addEventListener("resize", fitHeroToScreen);
   }
 
+  // ---------- navbar: translucent once you scroll ----------
+  (function () {
+    var siteHeader = document.querySelector("header");
+    if (!siteHeader) return;
+    function onScrollNavbar() {
+      siteHeader.classList.toggle("scrolled", window.scrollY > 10);
+    }
+    onScrollNavbar();
+    window.addEventListener("scroll", onScrollNavbar, { passive: true });
+  })();
+
   // ---------- navbar cart dropdown ----------
   // Hover or keyboard focus opens the panel on desktop; on touch there is
   // no hover, so a tap pins it open. An outside tap or Escape closes it.

@@ -7,6 +7,7 @@
 # Service('/usr/bin/chromedriver') and binary_location='/usr/bin/chromium' explicitly.
 
 import json
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -55,6 +56,14 @@ def txt(id_):
     return driver.execute_script(
         "return document.getElementById('" + id_ + "').textContent.trim()")
 
+def click_el(css_sel):
+    # the sticky navbar overlays the top of the viewport, so Selenium's
+    # auto-scroll would park the target under it — centre it first
+    el = driver.find_element(By.CSS_SELECTOR, css_sel)
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", el)
+    el.click()
+    return el
+
 def visible_names():
     return [c["name"] for c in page_state() if c["visible"]]
 
@@ -94,7 +103,7 @@ check("category reset restores all", len(visible_names()) == 33)
 # 5. add to cart (first grid card — button-area is now always visible)
 first_name = driver.execute_script(
     "return document.querySelector('.product-grid .product-item h3').textContent.trim()")
-driver.find_element(By.CSS_SELECTOR, ".product-grid .btn-cart").click()
+click_el(".product-grid .btn-cart")
 check("add to cart updates badge", txt("cart-count") == "1")
 stored = driver.execute_script("return JSON.parse(localStorage.getItem('ago_cart') || '[]')")
 check("cart persisted to localStorage", len(stored) == 1 and stored[0]["name"] == first_name, stored)
@@ -127,11 +136,11 @@ check("old full-width cart section is gone",
       driver.execute_script("return document.querySelector('section#cart, .ago-checkout') === null"))
 
 # 6. quick view
-driver.find_element(By.CSS_SELECTOR, ".product-grid .product-item figure a").click()
+click_el(".product-grid .product-item figure a")
 wait.until(EC.visibility_of_element_located((By.ID, "product-modal")))
 check("quick-view modal opens", driver.find_element(By.ID, "pm-name").text == first_name)
 check("quick-view shows 80g price", driver.find_element(By.ID, "pm-p80").text.startswith("R"))
-driver.find_element(By.ID, "pm-add").click()
+click_el("#pm-add")
 wait.until(EC.invisibility_of_element_located((By.ID, "product-modal")))
 check("quick-view add increments cart", txt("cart-count") == "2")
 check("cart total computed", txt("cart-total").startswith("R"))
@@ -140,9 +149,9 @@ check("cart total computed", txt("cart-total").startswith("R"))
 #    hidden ob-size=80 input, so pouch size is fixed at 80g. #ob-subscribe is a hidden
 #    input too: store.js reads it via .checked, so drive it with checked + change event.
 check("builder default (80g x1)", txt("ob-total") == "R30.00")
-driver.find_element(By.ID, "ob-plus").click()
+click_el("#ob-plus")
 check("builder qty 2", txt("ob-total") == "R60.00")
-driver.find_element(By.ID, "ob-minus").click()
+click_el("#ob-minus")
 check("builder qty back to 1", txt("ob-total") == "R30.00")
 
 driver.execute_script(
@@ -175,16 +184,16 @@ check("whatsapp ORDER NOW CTA",
       driver.find_element(By.ID, "floating-whatsapp").get_attribute("href").startswith("https://wa.me/"))
 
 # 8. scenario filter
-driver.find_element(By.CSS_SELECTOR, ".scenario-shop").click()
+click_el(".scenario-shop")
 vis = visible_names()
 expected_scenario = [n for n in names if n in ("Ashwagandha Powder (Indian Ginseng)", "Moringa Powder")]
 check("scenario filter shows only scenario products", sorted(vis) == sorted(expected_scenario), f"{len(vis)} visible")
-driver.find_element(By.ID, "scenario-reset").click()
+click_el("#scenario-reset")
 check("scenario reset shows all", len(visible_names()) == 33, len(visible_names()))
 
 # 9. delivery note appears at R500+ (20x ashwagandha 80g = R600.00)
 driver.execute_script("document.querySelector('.product-grid .quantity').value = 20;")
-driver.find_element(By.CSS_SELECTOR, ".product-grid .btn-cart").click()
+click_el(".product-grid .btn-cart")
 # the delivery note lives inside the navbar cart dropdown, which is hidden
 # until hover/focus/tap — pin it open. Read textContent rather than
 # Selenium's .text: .text returns "" during the panel's 180ms opacity
@@ -229,8 +238,30 @@ logo = driver.execute_script("""
   return {loaded: i.complete && i.naturalWidth > 0, w: Math.round(b.width), h: Math.round(b.height),
           gap: Math.round(Math.abs((b.y + b.height/2) - (s.y + s.height/2)))};
 """)
-check("nav emblem loaded, 48px, level with the search bar",
-      logo and logo["loaded"] and logo["w"] == 48 and logo["h"] == 48 and logo["gap"] <= 1, logo)
+check("nav emblem loaded, 56px, level with the search bar",
+      logo and logo["loaded"] and logo["w"] == 56 and logo["h"] == 56 and logo["gap"] <= 1, logo)
+
+# 10d. navbar: bigger cart icon + emblem, sticky, glass on scroll
+nav = driver.execute_script("""
+  var btn = document.querySelector('.nav-cart-btn');
+  var lg = document.querySelector('.nav-logo');
+  var header = document.querySelector('header');
+  return {cartW: Math.round(btn.getBoundingClientRect().width),
+          cartH: Math.round(btn.getBoundingClientRect().height),
+          logoW: Math.round(lg.getBoundingClientRect().width),
+          logoH: Math.round(lg.getBoundingClientRect().height),
+          sticky: getComputedStyle(header).position};
+""")
+check("navbar: 52px cart icon, 56px emblem, sticky header",
+      nav and nav["cartW"] == 52 and nav["cartH"] == 52
+      and nav["logoW"] == 56 and nav["logoH"] == 56
+      and nav["sticky"] == "sticky", nav)
+driver.execute_script("window.scrollTo(0, 700)")
+time.sleep(0.3)
+scrolled = driver.execute_script(
+    "return document.querySelector('header').classList.contains('scrolled')")
+driver.execute_script("window.scrollTo(0, 0)")
+check("navbar turns translucent when scrolling", scrolled is True, scrolled)
 
 thumbs = driver.execute_script("""
   return [['Whole Spices & Seeds', 'images/category/images.png'],

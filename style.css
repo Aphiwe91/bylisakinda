@@ -842,9 +842,25 @@ body { background: var(--paper); color: var(--ink); font-family: -apple-system, 
 
 /* ===== Navbar: dark red → gold → green gradient, tuned to blend with the UI ===== */
 header {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
   background: linear-gradient(90deg, #C62828 0%, #E0A400 50%, #2E7D32 100%);
   color: #fff;
   box-shadow: 0 2px 8px rgba(17, 17, 17, 0.18);
+  transition: background .25s ease, box-shadow .25s ease;
+}
+/* Once you scroll, the navbar turns translucent — the same
+   gradient at 82% with a blur — so the stock scrolling
+   underneath stays visible through it. */
+header.scrolled {
+  background: linear-gradient(90deg,
+    rgba(198, 40, 40, 0.82) 0%,
+    rgba(224, 164, 0, 0.82) 50%,
+    rgba(46, 125, 50, 0.82) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(17, 17, 17, 0.25);
 }
 header .row.border-bottom { border-bottom-color: rgba(255, 255, 255, 0.35); }
 /* keep nav links readable on the gradient */
@@ -865,8 +881,8 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
 }
 .nav-logo {
   display: block;
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
@@ -895,9 +911,8 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   }
 }
 
-header { position: relative; }
 @media (max-width: 575.98px) {
-  .nav-logo { width: 40px; height: 40px; }
+  .nav-logo { width: 48px; height: 48px; }
 }
 
 /* social handles on the navbar */
