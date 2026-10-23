@@ -299,6 +299,26 @@ browser_errors = [l["message"] for l in driver.get_log("browser")
                   if l["level"] in ("SEVERE", "ERROR") and "fonts.googleapis" not in l["message"]]
 check("no browser console errors", len(browser_errors) == 0, browser_errors[:2])
 
+# 12. phones: compact social cluster must stay on screen and clear of the cart
+driver.set_window_size(390, 844)
+time.sleep(0.6)
+mobile = driver.execute_script("""
+  function box(el){var r=el.getBoundingClientRect();
+    return {x:r.x,y:r.y,w:r.width,h:r.height,right:r.right,bottom:r.bottom};}
+  var cart = box(document.querySelector('.nav-cart'));
+  var soc  = box(document.querySelector('.nav-social'));
+  var links = [].map.call(document.querySelectorAll('.nav-social a'), box);
+  var overlap = !(soc.right <= cart.x || cart.right <= soc.x ||
+                  soc.bottom <= cart.y || cart.bottom <= soc.y);
+  var offscreen = links.filter(function(l){return l.x < 0 || l.right > innerWidth;}).length;
+  return {w: links.length ? Math.round(links[0].w) : 0, n: links.length,
+          offscreen: offscreen, overlap: overlap};
+""")
+check("phones: 34px socials (x4), on screen and clear of the cart",
+      mobile["w"] == 34 and mobile["n"] == 4 and mobile["offscreen"] == 0
+      and mobile["overlap"] is False, mobile)
+driver.set_window_size(1400, 1000)
+
 driver.save_screenshot("/tmp/store-test.png")
 driver.quit()
 

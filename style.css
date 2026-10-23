@@ -913,33 +913,6 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   }
 }
 
-@media (max-width: 575.98px) {
-  .nav-logo { width: 60px; height: 60px; }
-  /* nav-social: flush to the header's right edge (which spans viewport) */
-  .nav-social {
-    position: absolute;
-    right: -15px;  /* compensate for container-fluid padding */
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-    z-index: 10;  /* above the row */
-  }
-  .nav-social li {
-    margin-right: 0;
-  }
-  .nav-social a {
-    padding: 0.35rem 0.5rem;
-  }
-  /* Make the header the positioning context */
-  header {
-    position: relative;
-  }
-  /* Make room in the row so it doesn't overlap */
-  header .row.py-3.border-bottom {
-    padding-right: 120px;
-  }
-}
-
 /* social handles on the navbar */
 .nav-social a {
   color: #fff;
@@ -960,11 +933,57 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   transform: translateY(-2px) scale(1.08);
   background: rgba(255, 255, 255, 0.2);
 }
-.nav-social a:hover,
-.nav-social a:focus-visible {
-  color: #fff;
-  opacity: 1;
-  transform: translateY(-2px) scale(1.08);
+
+/* ===== Phones: compact social cluster =====
+   Four 52px circles centred on the header sat on top of the cart and the
+   search bar, and ran 15px past the right edge (doc width 405 on a 390px
+   phone). Shrink them to 34px and pack them 2x2 into the top bar, right of
+   the cart; the search row below then keeps its full width. */
+@media (max-width: 575.98px) {
+  .nav-logo { width: 60px; height: 60px; }
+
+  header {
+    position: relative;
+  }
+  /* the socials no longer sit in row 1, so it needs no room reserved */
+  header .row.py-3.border-bottom {
+    padding-right: 0;
+  }
+  /* cart moved left to leave the cluster the right-hand 100px of row 1 */
+  header .row.py-3.border-bottom > div:nth-child(3) {
+    padding-right: 100px;
+  }
+
+  .nav-social {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    bottom: auto;
+    transform: none;
+    width: 72px;          /* 2 x 34px + 4px gap */
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+    z-index: 10;  /* above the row */
+  }
+  .nav-social li {
+    display: flex;   /* list-item adds descender space -> rows drift apart */
+    margin: 0;
+  }
+  /* the anchors carry Bootstrap .p-2 .mx-1 (!important), so override them */
+  .nav-social a {
+    width: 34px;
+    height: 34px;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .nav-social svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* ===== Hero: devoir-style minimal, text-centric ===== */
