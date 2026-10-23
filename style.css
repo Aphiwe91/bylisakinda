@@ -934,24 +934,68 @@ header .form-control::placeholder { color: #6c757d; opacity: 0.75; }
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ===== Phones: compact social cluster =====
-   Four 52px circles centred on the header sat on top of the cart and the
-   search bar, and ran 15px past the right edge (doc width 405 on a 390px
-   phone). Shrink them to 34px and pack them 2x2 into the top bar, right of
-   the cart; the search row below then keeps its full width. */
+/* ===== Phones: compact header =====
+   The header row is a Bootstrap .row, so its negative gutter margins put
+   everything 12px off the left edge: the emblem touched the screen edge and
+   the search pill's left corner was cut off. 20px of row padding lands the
+   content 8px inside the screen on both sides (row box is -12 .. vw+12).
+   Row 1 = toggle + emblem (left) ... cart + 2x2 socials (right),
+   row 2 = full-width search pill. */
 @media (max-width: 575.98px) {
   .nav-logo { width: 60px; height: 60px; }
 
   header {
     position: relative;
   }
-  /* the socials no longer sit in row 1, so it needs no room reserved */
+
   header .row.py-3.border-bottom {
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 0 !important;   /* .gap-5 put 48px between the columns */
   }
-  /* cart moved left to leave the cluster the right-hand 100px of row 1 */
+  /* left block takes the free space, toggler centred on the emblem */
+  header .row.py-3.border-bottom > div:nth-child(1) {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: none;
+    align-items: center;
+    padding: 0;
+  }
+  /* search gets its own full-width line under the top bar */
+  header .row.py-3.border-bottom > div:nth-child(2) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+  /* cart sits 80px in from the right, leaving room for the social cluster */
   header .row.py-3.border-bottom > div:nth-child(3) {
-    padding-right: 100px;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    padding: 0 80px 0 0;
+  }
+  /* search pill: cancel the row's -12px gutters, both rounded ends on screen */
+  header .search-bar {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 4px;
+  }
+  /* the magnifier column (col-1 = 8.33%) collapses to 0px below 340px,
+     which hid the icon; give it a fixed slot and let the input take the rest */
+  header .search-bar > .col-1 {
+    flex: 0 0 36px;
+    max-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header .search-bar > .col-11 {
+    flex: 1 1 0%;
+    width: auto;
+    max-width: none;
+  }
+  header .search-bar svg {
+    flex: 0 0 auto;
   }
 
   .nav-social {
